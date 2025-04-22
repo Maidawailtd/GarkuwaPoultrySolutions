@@ -10,8 +10,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Validate the request body
       const validatedData = insertContactSchema.parse(req.body);
       
-      // Store in memory
-      const contact = await storage.createContact(validatedData);
+      // Store in database
+      const contact = await storage.createContactSubmission(validatedData);
       
       // Send response
       res.status(201).json({ 
@@ -24,6 +24,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(400).json({ 
         success: false, 
         message: "Invalid form submission"
+      });
+    }
+  });
+
+  // Get all contact submissions
+  app.get("/api/contacts", async (req, res) => {
+    try {
+      const submissions = await storage.getContactSubmissions();
+      res.status(200).json(submissions);
+    } catch (error) {
+      console.error("Error fetching contact submissions:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to fetch contact submissions"
       });
     }
   });
