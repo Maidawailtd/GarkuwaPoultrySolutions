@@ -25,7 +25,7 @@ export default function About() {
               About Garkuwa Livestock Farm
             </h2>
             <p className="text-lg mb-4">
-              Founded in 2010, Garkuwa Poultry Farm has grown from a small family business to one of the leading livestock training centers in Nigeria, located in Dangi Kanam, Plateau State.
+              Founded in 2010, Garkuwa Livestock Farm has grown from a small family business to one of the leading livestock training centers in Nigeria, located in Dangi Kanam, Plateau State.
             </p>
             <p className="text-lg mb-4">
               Our mission is to empower farmers with the knowledge and skills needed to build sustainable and profitable livestock operations through hands-on training and ongoing support.
