@@ -12,10 +12,10 @@ export default function Hero() {
       </div>
       <div className="container mx-auto px-4 py-20 md:py-32 relative z-10 flex flex-col items-center">
         <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl text-center mb-6">
-          Welcome to Garkuwa Poultry Farm
+          Welcome to Garkuwa Livestock Farm
         </h1>
         <p className="text-lg md:text-xl text-center max-w-3xl mb-8">
-          Your premier destination for comprehensive livestock training and premium poultry solutions in Nigeria
+          Your premier destination for comprehensive livestock training and animal husbandry solutions in Dangi Kanam, Plateau State, Nigeria
         </p>
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
           <Button 

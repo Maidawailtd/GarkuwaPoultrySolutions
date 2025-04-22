@@ -31,21 +31,21 @@ export default function Contact() {
                   <MapPin className="text-[#D9A604] mt-1 mr-4 h-5 w-5" />
                   <div>
                     <p className="font-semibold">Farm Location:</p>
-                    <p>Km 15, Kaduna-Zaria Highway, Kaduna State, Nigeria</p>
+                    <p>Dangi Kanam, Plateau State, Nigeria Ltd</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Phone className="text-[#D9A604] mt-1 mr-4 h-5 w-5" />
                   <div>
                     <p className="font-semibold">Phone:</p>
-                    <p>+234 803 384 7675</p>
+                    <p>+8033847675</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Mail className="text-[#D9A604] mt-1 mr-4 h-5 w-5" />
                   <div>
                     <p className="font-semibold">Email:</p>
-                    <p>info@garkuwafarm.com, training@garkuwafarm.com</p>
+                    <p>abdulrrazzakmusa47@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -63,32 +63,51 @@ export default function Contact() {
               <h3 className="font-semibold text-xl mb-4">Follow Us</h3>
               <div className="flex space-x-4">
                 <a 
-                  href="#" 
+                  href="https://facebook.com/garkuwafarm" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-[#2D5E2E] text-white flex items-center justify-center hover:bg-[#3A7A3B] transition duration-300"
                   aria-label="Facebook"
                 >
                   <Facebook className="h-5 w-5" />
                 </a>
                 <a 
-                  href="#" 
+                  href="https://instagram.com/garkuwafarm" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-[#2D5E2E] text-white flex items-center justify-center hover:bg-[#3A7A3B] transition duration-300"
                   aria-label="Instagram"
                 >
                   <Instagram className="h-5 w-5" />
                 </a>
                 <a 
-                  href="#" 
+                  href="https://twitter.com/garkuwafarm" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-[#2D5E2E] text-white flex items-center justify-center hover:bg-[#3A7A3B] transition duration-300"
                   aria-label="Twitter"
                 >
                   <Twitter className="h-5 w-5" />
                 </a>
                 <a 
-                  href="#" 
+                  href="https://youtube.com/channel/garkuwafarm" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-[#2D5E2E] text-white flex items-center justify-center hover:bg-[#3A7A3B] transition duration-300"
                   aria-label="YouTube"
                 >
                   <Youtube className="h-5 w-5" />
+                </a>
+                <a 
+                  href="https://wa.me/8033847675" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-[#2D5E2E] text-white flex items-center justify-center hover:bg-[#3A7A3B] transition duration-300"
+                  aria-label="WhatsApp"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-circle">
+                    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+                  </svg>
                 </a>
               </div>
             </div>

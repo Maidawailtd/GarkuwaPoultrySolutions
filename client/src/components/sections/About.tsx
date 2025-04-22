@@ -22,16 +22,16 @@ export default function About() {
           </div>
           <div className="md:w-1/2">
             <h2 className="font-bold text-3xl md:text-4xl text-[#2D5E2E] mb-6">
-              About Garkuwa Poultry Farm
+              About Garkuwa Livestock Farm
             </h2>
             <p className="text-lg mb-4">
-              Founded in 2010, Garkuwa Poultry Farm has grown from a small family business to one of the leading livestock training centers in Nigeria.
+              Founded in 2010, Garkuwa Poultry Farm has grown from a small family business to one of the leading livestock training centers in Nigeria, located in Dangi Kanam, Plateau State.
             </p>
             <p className="text-lg mb-4">
               Our mission is to empower farmers with the knowledge and skills needed to build sustainable and profitable livestock operations through hands-on training and ongoing support.
             </p>
             <p className="text-lg mb-6">
-              With over 500 acres of farmland and state-of-the-art facilities, we provide comprehensive training programs tailored to different livestock categories and farming objectives.
+              With extensive farmland and modern facilities, we provide comprehensive training programs tailored to different livestock categories including poultry, cattle, rabbits, fish farming, and more.
             </p>
             
             <div className="grid grid-cols-2 gap-4 mb-6">
