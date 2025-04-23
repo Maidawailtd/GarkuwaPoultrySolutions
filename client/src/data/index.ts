@@ -1,237 +1,179 @@
+// Using emoji icons instead of Lucide React components for simplicity
+
+// Livestock Categories
 export const categories = [
   {
-    title: "Poultry",
-    description: "Specialized training for chickens, turkeys, and other birds",
-    image: "https://images.unsplash.com/photo-1569597967185-cd6120712154?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    name: "Broiler Chickens",
+    slug: "broilers",
+    description: "Fast-growing meat birds raised for commercial production",
+    image: "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "Cattle",
-    description: "Complete rearing and management training for cows and bulls",
-    image: "https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    name: "Layer Hens",
+    slug: "layers",
+    description: "Egg-producing chickens optimized for high yield",
+    image: "https://images.unsplash.com/photo-1563281552-95de5ca4ccca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "Goats & Sheep",
-    description: "Effective small ruminant management and production",
-    image: "https://images.unsplash.com/photo-1533318087102-b3ad366ed041?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    name: "Turkeys",
+    slug: "turkeys",
+    description: "Large poultry birds raised for meat production",
+    image: "https://images.unsplash.com/photo-1511993807578-701168605ad3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "Pigs",
-    description: "Modern techniques for swine farming and management",
-    image: "https://images.unsplash.com/photo-1583309219338-a582f1f9ca6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    name: "Guinea Fowl",
+    slug: "guinea-fowl",
+    description: "Hardy birds known for pest control and meat",
+    image: "https://images.unsplash.com/photo-1623566791604-9e2ab7d17867?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "Rabbits",
-    description: "Comprehensive rabbit farming and commercial production",
-    image: "https://images.unsplash.com/photo-1535241749838-299277b6305f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    name: "Goats",
+    slug: "goats",
+    description: "Versatile livestock for milk, meat, and brush control",
+    image: "https://images.unsplash.com/photo-1533318087102-b3ad366ed041?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "Fish Farming",
-    description: "Aquaculture systems and management for various fish species",
-    image: "https://images.unsplash.com/photo-1545529468-42764ef8c85f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    name: "Sheep",
+    slug: "sheep",
+    description: "Ruminant livestock raised for wool and meat",
+    image: "https://images.unsplash.com/photo-1484557985045-edf25e08da73?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    name: "Rabbits",
+    slug: "rabbits",
+    description: "Small livestock for meat and fur production",
+    image: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    name: "Catfish",
+    slug: "catfish",
+    description: "Freshwater fish species for aquaculture",
+    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   }
 ];
 
+// Training Programs
 export const programs = [
   {
-    title: "Poultry Management",
-    duration: "2 Weeks",
-    topics: [
-      "Broiler and layer management",
-      "Disease prevention and control",
-      "Feeding and nutrition optimization",
-      "Hatchery operations",
-      "Marketing strategies"
-    ],
-    price: "₦75,000"
+    id: 1,
+    title: "Commercial Broiler Production",
+    description: "Learn modern techniques for efficient broiler farming at scale",
+    duration: "4 weeks",
+    schedule: "Weekdays",
+    price: "₦50,000",
+    image: "https://images.unsplash.com/photo-1548963607-e4b6c46f30d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "Cattle Rearing",
-    duration: "4 Weeks",
-    topics: [
-      "Beef and dairy cattle management",
-      "Breeding and genetics",
-      "Pasture development",
-      "Health management protocols",
-      "Farm setup and equipment"
-    ],
-    price: "₦120,000"
+    id: 2,
+    title: "Layer Management",
+    description: "Master egg production with optimal hen health and housing",
+    duration: "4 weeks",
+    schedule: "Weekends",
+    price: "₦45,000",
+    image: "https://images.unsplash.com/photo-1518214598173-1666bc921d66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "Small Ruminants",
-    duration: "2 Weeks",
-    topics: [
-      "Goat and sheep husbandry",
-      "Breeding management",
-      "Feeding regimens",
-      "Disease prevention",
-      "Product development"
-    ],
-    price: "₦65,000"
-  },
-  {
-    title: "Pig Farming",
-    duration: "3 Weeks",
-    topics: [
-      "Modern pig housing systems",
-      "Breeding and farrowing management",
-      "Disease control strategies",
-      "Nutrition and feeding programs",
-      "Value addition and marketing"
-    ],
-    price: "₦85,000"
-  },
-  {
-    title: "Rabbit Production",
-    duration: "1 Week",
-    topics: [
-      "Rabbit breeds and selection",
-      "Housing and cage construction",
-      "Feeding and nutrition",
-      "Disease management",
-      "Processing and marketing"
-    ],
-    price: "₦45,000"
-  },
-  {
-    title: "Fish Farming",
-    duration: "2 Weeks",
-    topics: [
-      "Pond construction and management",
-      "Water quality management",
-      "Fish species selection",
-      "Feed formulation and feeding",
-      "Harvesting and marketing"
-    ],
-    price: "₦70,000"
+    id: 3,
+    title: "Small Ruminant Farming",
+    description: "Comprehensive guide to raising goats and sheep for profit",
+    duration: "3 weeks",
+    schedule: "Weekdays",
+    price: "₦40,000",
+    image: "https://images.unsplash.com/photo-1560263816-d704d3e011dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   }
 ];
 
+// Gallery Items
 export const galleryItems = [
   {
-    title: "Broiler Chickens",
-    description: "Fast-growing meat breed",
-    image: "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "poultry"
+    image: "https://images.unsplash.com/photo-1563699182-58786347aad3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    caption: "Healthy broiler chickens in our modern housing facility"
   },
   {
-    title: "Layer Hens",
-    description: "High-producing egg layers",
-    image: "https://images.unsplash.com/photo-1563281577-a7be47e20db9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "poultry"
+    image: "https://images.unsplash.com/photo-1567011497345-47c17fe9cfa1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    caption: "Free-range layer hens in outdoor enclosure"
   },
   {
-    title: "Holstein Cattle",
-    description: "Premium dairy breed",
-    image: "https://images.unsplash.com/photo-1545468259-3377ebe91a38?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "cattle"
+    image: "https://images.unsplash.com/photo-1558392204-ac78a4cc635f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    caption: "Goat breeding stock for training programs"
   },
   {
-    title: "Boer Goats",
-    description: "Premier meat goat breed",
-    image: "https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "sheep-goats"
+    image: "https://images.unsplash.com/photo-1583738034966-2d08a899a558?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    caption: "Hands-on training session with chicks"
   },
   {
-    title: "Large White Pigs",
-    description: "Commercial pork production",
-    image: "https://images.unsplash.com/photo-1533214206106-35370a9e8a21?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "pigs"
+    image: "https://images.unsplash.com/photo-1621109246795-abfc06a2118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    caption: "Turkeys being raised for breeding stock"
   },
   {
-    title: "Turkeys",
-    description: "Broad-breasted white variety",
-    image: "https://images.unsplash.com/photo-1570368294249-011578bdb3f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "poultry"
+    image: "https://images.unsplash.com/photo-1551817958-d9d86fb29431?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    caption: "Practical session on feed formulation"
   },
   {
-    title: "Angus Cattle",
-    description: "Quality beef production",
-    image: "https://images.unsplash.com/photo-1526979118433-63c7344f06f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "cattle"
+    image: "https://images.unsplash.com/photo-1586788224331-947f68671cf1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    caption: "Sheep grazing on our farm pastures"
   },
   {
-    title: "Merino Sheep",
-    description: "Fine wool production",
-    image: "https://images.unsplash.com/photo-1511117833895-4b473c0b85d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "sheep-goats"
-  },
-  {
-    title: "Duroc Pigs",
-    description: "Hardy breed with excellent meat quality",
-    image: "https://images.unsplash.com/photo-1516467508483-a7212febe31a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "pigs"
-  },
-  {
-    title: "New Zealand White Rabbits",
-    description: "Popular commercial meat rabbit",
-    image: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "rabbits"
-  },
-  {
-    title: "California Rabbits",
-    description: "Excellent for meat production",
-    image: "https://images.unsplash.com/photo-1518796745738-41048802f99a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "rabbits"
-  },
-  {
-    title: "Tilapia",
-    description: "Fast-growing freshwater fish",
-    image: "https://images.unsplash.com/photo-1628863353691-0829faac78aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "fish"
-  },
-  {
-    title: "Catfish",
-    description: "Hardy species ideal for local production",
-    image: "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "fish"
+    image: "https://images.unsplash.com/photo-1596604968018-e15612ada254?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    caption: "Catfish aquaculture demonstration pond"
   }
 ];
 
+// Testimonials
 export const testimonials = [
   {
-    name: "Ibrahim Musa",
-    location: "Poultry Farmer, Kaduna",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
-    quote: "The poultry management training at Garkuwa Farm completely transformed my small backyard chicken project into a profitable business. The practical approach to learning was exactly what I needed.",
+    name: "Aisha Mohammed",
+    role: "Small-scale Farmer",
+    avatar: "https://randomuser.me/api/portraits/women/45.jpg",
+    quote: "The training at Garkuwa Poultry Farm transformed my small backyard operation into a profitable business. The practical approach and ongoing support have been invaluable.",
     rating: 5
   },
   {
-    name: "Amina Yusuf",
-    location: "Cattle Farmer, Kano",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-    quote: "As a first-time cattle farmer, I was overwhelmed with information. Garkuwa's comprehensive training gave me the confidence and skills to manage my herd effectively. Their ongoing support has been invaluable.",
+    name: "Emmanuel Okonkwo",
+    role: "Commercial Farmer",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    quote: "I've attended many agricultural workshops, but none as comprehensive as Garkuwa's. Their broiler production program helped me increase my flock efficiency by over 30%.",
     rating: 5
   },
   {
-    name: "Emmanuel Adebayo",
-    location: "Goat Farmer, Lagos",
-    image: "https://randomuser.me/api/portraits/men/67.jpg",
-    quote: "The small ruminant program equipped me with modern techniques for goat farming. My production has increased by 40% since implementing what I learned, and disease outbreaks have become a thing of the past.",
-    rating: 4.5
-  },
-  {
-    name: "Fatima Ahmed",
-    location: "Mixed Farmer, Abuja",
-    image: "https://randomuser.me/api/portraits/women/22.jpg",
-    quote: "I attended multiple training programs at Garkuwa, and each one exceeded my expectations. The instructors are knowledgeable and patient, and the facilities are world-class. I highly recommend their programs.",
-    rating: 5
+    name: "Fatima Ibrahim",
+    role: "Agricultural Student",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+    quote: "As a student, the hands-on experience I gained at Garkuwa was more valuable than years of theoretical study. Their staff are true experts in poultry management.",
+    rating: 4
   }
 ];
 
+// Farm Facilities
 export const facilities = [
   {
-    title: "Modern Poultry Houses",
-    description: "Temperature-controlled houses with automated feeding and watering systems",
-    image: "https://images.unsplash.com/photo-1587825045005-c9fe303cc64d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    name: "Modern Broiler Houses",
+    description: "Climate-controlled housing with automated feeding and watering systems for optimal broiler growth conditions.",
+    icon: "🏢"
   },
   {
-    title: "Training Center",
-    description: "Spacious classrooms equipped with audiovisual aids for theoretical training",
-    image: "https://images.unsplash.com/photo-1598715559054-0dd89366bbe3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    name: "Layer Battery Cages",
+    description: "Advanced battery cage systems designed for maximum egg production and efficient management of layer hens.",
+    icon: "🏠"
   },
   {
-    title: "Feed Mill",
-    description: "On-site feed production facility for nutritional formulation training",
-    image: "https://images.unsplash.com/photo-1626093885490-a5cf3a9db920?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    name: "Free Range Areas",
+    description: "Specially designed paddocks allowing natural foraging behavior while maintaining biosecurity standards.",
+    icon: "🌱"
+  },
+  {
+    name: "Incubation Center",
+    description: "State-of-the-art incubators and hatchers for reliable and high-yield hatching operations.",
+    icon: "💧"
+  },
+  {
+    name: "Training Classroom",
+    description: "Fully equipped learning environment with modern audiovisual technology for theoretical sessions.",
+    icon: "📚"
+  },
+  {
+    name: "Feed Mill",
+    description: "On-site feed production facility ensuring high-quality, consistent nutrition for all livestock.",
+    icon: "🚜"
   }
 ];
