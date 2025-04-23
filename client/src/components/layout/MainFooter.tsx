@@ -1,12 +1,21 @@
 import { Link } from 'wouter';
-import { Briefcase, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { 
+  Facebook, 
+  Twitter, 
+  Instagram, 
+  Linkedin, 
+  Briefcase, 
+  Mail, 
+  MapPin, 
+  Phone 
+} from 'lucide-react';
 
 export function MainFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-background border-t">
-      <div className="container py-10 md:py-16">
+      <div className="container py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <Link href="/">
@@ -56,16 +65,16 @@ export function MainFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="/register">
                   <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Payment Protection
+                    Join as a Client
                   </a>
                 </Link>
               </li>
               <li>
-                <Link href="/register">
+                <Link href="#">
                   <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Get Started
+                    Payment Protection
                   </a>
                 </Link>
               </li>
@@ -83,23 +92,23 @@ export function MainFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="#">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Build Profile
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Payment Guarantee
-                  </a>
-                </Link>
-              </li>
-              <li>
                 <Link href="/register">
                   <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Join Us
+                    Join as a Freelancer
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="#">
+                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    Build Portfolio
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="#">
+                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    Get Paid Securely
                   </a>
                 </Link>
               </li>
@@ -107,42 +116,25 @@ export function MainFooter() {
           </div>
 
           <div>
-            <h3 className="font-medium text-base mb-4">Resources</h3>
+            <h3 className="font-medium text-base mb-4">Contact Us</h3>
             <ul className="space-y-3">
-              <li>
-                <Link href="#">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Help Center
-                  </a>
-                </Link>
+              <li className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">
+                  123 Freelance Street, Digital City
+                </span>
               </li>
-              <li>
-                <Link href="#">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Blog
-                  </a>
-                </Link>
+              <li className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-muted-foreground" />
+                <a href="mailto:info@mglinkco.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  info@mglinkco.com
+                </a>
               </li>
-              <li>
-                <Link href="#">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Community
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Privacy Policy
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Terms of Service
-                  </a>
-                </Link>
+              <li className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-muted-foreground" />
+                <a href="tel:+12345678901" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  +1 (234) 567-8901
+                </a>
               </li>
             </ul>
           </div>

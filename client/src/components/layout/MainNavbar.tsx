@@ -20,7 +20,7 @@ import {
 
 export function MainNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
   const { isAuthenticated, user, logout } = useAuthStore();
 
   const handleLogout = () => {
@@ -40,27 +40,19 @@ export function MainNavbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center">
-          <Link href="/">
-            <a className="flex items-center">
-              <Briefcase className="h-6 w-6 mr-2 text-primary" />
-              <span className="text-xl font-bold">MGLinkCo</span>
-            </a>
+          <Link href="/" className="flex items-center">
+            <Briefcase className="h-6 w-6 mr-2 text-primary" />
+            <span className="text-xl font-bold">MGLinkCo</span>
           </Link>
           <nav className="mx-6 hidden md:flex items-center space-x-4 lg:space-x-6">
-            <Link href="/">
-              <a className={`text-sm font-medium transition-colors hover:text-primary ${location === '/' ? 'text-primary' : 'text-muted-foreground'}`}>
-                Home
-              </a>
+            <Link href="/" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/' ? 'text-primary' : 'text-muted-foreground'}`}>
+              Home
             </Link>
-            <Link href="/projects">
-              <a className={`text-sm font-medium transition-colors hover:text-primary ${location === '/projects' ? 'text-primary' : 'text-muted-foreground'}`}>
-                Find Projects
-              </a>
+            <Link href="/projects" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/projects' ? 'text-primary' : 'text-muted-foreground'}`}>
+              Find Projects
             </Link>
-            <Link href="/freelancers">
-              <a className={`text-sm font-medium transition-colors hover:text-primary ${location === '/freelancers' ? 'text-primary' : 'text-muted-foreground'}`}>
-                Find Freelancers
-              </a>
+            <Link href="/freelancers" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/freelancers' ? 'text-primary' : 'text-muted-foreground'}`}>
+              Find Freelancers
             </Link>
           </nav>
         </div>
@@ -78,15 +70,11 @@ export function MainNavbar() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuItem>
-                    <Link href="/dashboard">
-                      <a className="w-full">Dashboard</a>
-                    </Link>
+                  <DropdownMenuItem onClick={() => navigate('/dashboard')}>
+                    Dashboard
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link href="/profile">
-                      <a className="w-full">Profile</a>
-                    </Link>
+                  <DropdownMenuItem onClick={() => navigate('/profile')}>
+                    Profile
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout}>
@@ -117,11 +105,9 @@ export function MainNavbar() {
           </SheetTrigger>
           <SheetContent side="right" className="w-[80%] sm:w-[350px]">
             <div className="flex justify-between items-center mb-6">
-              <Link href="/" onClick={() => setIsMenuOpen(false)}>
-                <a className="flex items-center">
-                  <Briefcase className="h-6 w-6 mr-2 text-primary" />
-                  <span className="text-xl font-bold">MGLinkCo</span>
-                </a>
+              <Link href="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
+                <Briefcase className="h-6 w-6 mr-2 text-primary" />
+                <span className="text-xl font-bold">MGLinkCo</span>
               </Link>
               <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
                 <X className="h-6 w-6" />
@@ -130,20 +116,14 @@ export function MainNavbar() {
             </div>
             
             <div className="space-y-4">
-              <Link href="/" onClick={() => setIsMenuOpen(false)}>
-                <a className={`block text-base font-medium p-2 rounded-lg hover:bg-muted ${location === '/' ? 'bg-muted' : ''}`}>
-                  Home
-                </a>
+              <Link href="/" onClick={() => setIsMenuOpen(false)} className={`block text-base font-medium p-2 rounded-lg hover:bg-muted ${location === '/' ? 'bg-muted' : ''}`}>
+                Home
               </Link>
-              <Link href="/projects" onClick={() => setIsMenuOpen(false)}>
-                <a className={`block text-base font-medium p-2 rounded-lg hover:bg-muted ${location === '/projects' ? 'bg-muted' : ''}`}>
-                  Find Projects
-                </a>
+              <Link href="/projects" onClick={() => setIsMenuOpen(false)} className={`block text-base font-medium p-2 rounded-lg hover:bg-muted ${location === '/projects' ? 'bg-muted' : ''}`}>
+                Find Projects
               </Link>
-              <Link href="/freelancers" onClick={() => setIsMenuOpen(false)}>
-                <a className={`block text-base font-medium p-2 rounded-lg hover:bg-muted ${location === '/freelancers' ? 'bg-muted' : ''}`}>
-                  Find Freelancers
-                </a>
+              <Link href="/freelancers" onClick={() => setIsMenuOpen(false)} className={`block text-base font-medium p-2 rounded-lg hover:bg-muted ${location === '/freelancers' ? 'bg-muted' : ''}`}>
+                Find Freelancers
               </Link>
               
               {isAuthenticated ? (
