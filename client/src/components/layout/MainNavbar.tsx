@@ -139,15 +139,11 @@ export function MainNavbar() {
                         <p className="text-xs text-muted-foreground">{user?.email}</p>
                       </div>
                     </div>
-                    <Link href="/dashboard" onClick={() => setIsMenuOpen(false)}>
-                      <a className="block text-base font-medium p-2 rounded-lg hover:bg-muted mt-2">
-                        Dashboard
-                      </a>
+                    <Link href="/dashboard" onClick={() => setIsMenuOpen(false)} className="block text-base font-medium p-2 rounded-lg hover:bg-muted mt-2">
+                      Dashboard
                     </Link>
-                    <Link href="/profile" onClick={() => setIsMenuOpen(false)}>
-                      <a className="block text-base font-medium p-2 rounded-lg hover:bg-muted">
-                        Profile
-                      </a>
+                    <Link href="/profile" onClick={() => setIsMenuOpen(false)} className="block text-base font-medium p-2 rounded-lg hover:bg-muted">
+                      Profile
                     </Link>
                     <button
                       onClick={() => {

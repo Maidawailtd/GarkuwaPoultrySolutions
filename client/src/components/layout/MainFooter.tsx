@@ -18,11 +18,9 @@ export function MainFooter() {
       <div className="container py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <Link href="/">
-              <a className="flex items-center mb-4">
+            <Link href="/" className="flex items-center mb-4">
                 <Briefcase className="h-6 w-6 mr-2 text-primary" />
                 <span className="text-xl font-bold">MGLinkCo</span>
-              </a>
             </Link>
             <p className="text-muted-foreground text-sm mb-4">
               Connecting talent with opportunities. The premier freelancing platform for professionals worldwide.
@@ -51,31 +49,23 @@ export function MainFooter() {
             <h3 className="font-medium text-base mb-4">For Clients</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/projects">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Post a Project
-                  </a>
+                <Link href="/projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Post a Project
                 </Link>
               </li>
               <li>
-                <Link href="/freelancers">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Find Freelancers
-                  </a>
+                <Link href="/freelancers" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Find Freelancers
                 </Link>
               </li>
               <li>
-                <Link href="/register">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Join as a Client
-                  </a>
+                <Link href="/register" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Join as a Client
                 </Link>
               </li>
               <li>
-                <Link href="#">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Payment Protection
-                  </a>
+                <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Payment Protection
                 </Link>
               </li>
             </ul>
@@ -85,31 +75,23 @@ export function MainFooter() {
             <h3 className="font-medium text-base mb-4">For Freelancers</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/projects">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Find Work
-                  </a>
+                <Link href="/projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Find Work
                 </Link>
               </li>
               <li>
-                <Link href="/register">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Join as a Freelancer
-                  </a>
+                <Link href="/register" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Join as a Freelancer
                 </Link>
               </li>
               <li>
-                <Link href="#">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Build Portfolio
-                  </a>
+                <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Build Portfolio
                 </Link>
               </li>
               <li>
-                <Link href="#">
-                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    Get Paid Securely
-                  </a>
+                <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Get Paid Securely
                 </Link>
               </li>
             </ul>
