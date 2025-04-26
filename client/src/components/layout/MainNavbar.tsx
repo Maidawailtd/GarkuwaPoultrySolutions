@@ -42,7 +42,7 @@ export function MainNavbar() {
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <Briefcase className="h-6 w-6 mr-2 text-primary" />
-            <span className="text-xl font-bold">MGLinkCo</span>
+            <span className="text-xl font-bold">Garkuwa Poultry Farm</span>
           </Link>
           <nav className="mx-6 hidden md:flex items-center space-x-4 lg:space-x-6">
             <Link href="/" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/' ? 'text-primary' : 'text-muted-foreground'}`}>
@@ -94,7 +94,7 @@ export function MainNavbar() {
             </>
           )}
         </div>
-        
+
         {/* Mobile menu button */}
         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
           <SheetTrigger asChild className="md:hidden">
@@ -107,14 +107,14 @@ export function MainNavbar() {
             <div className="flex justify-between items-center mb-6">
               <Link href="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
                 <Briefcase className="h-6 w-6 mr-2 text-primary" />
-                <span className="text-xl font-bold">MGLinkCo</span>
+                <span className="text-xl font-bold">Garkuwa Poultry Farm</span>
               </Link>
               <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
                 <X className="h-6 w-6" />
                 <span className="sr-only">Close</span>
               </Button>
             </div>
-            
+
             <div className="space-y-4">
               <Link href="/" onClick={() => setIsMenuOpen(false)} className={`block text-base font-medium p-2 rounded-lg hover:bg-muted ${location === '/' ? 'bg-muted' : ''}`}>
                 Home
@@ -125,7 +125,7 @@ export function MainNavbar() {
               <Link href="/freelancers" onClick={() => setIsMenuOpen(false)} className={`block text-base font-medium p-2 rounded-lg hover:bg-muted ${location === '/freelancers' ? 'bg-muted' : ''}`}>
                 Find Freelancers
               </Link>
-              
+
               {isAuthenticated ? (
                 <>
                   <div className="border-t pt-4 mt-4">

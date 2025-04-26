@@ -27,7 +27,7 @@ export default function Home() {
                 Quality <span className="text-primary">Poultry & Livestock</span> Training
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
-                Garkuwa Poultry Farm offers professional training programs and high-quality livestock for both commercial and small-scale farmers.
+                Garkuwa Poultry Farm offers professional training programs and high-quality livestock for both commercial and small-scale farmers under the brand name Garkuwa Poultry Farm.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/programs">

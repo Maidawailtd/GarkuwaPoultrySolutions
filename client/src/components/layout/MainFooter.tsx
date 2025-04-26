@@ -123,7 +123,7 @@ export function MainFooter() {
         </div>
 
         <div className="border-t mt-10 pt-6 text-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear} MGLinkCo. All rights reserved.</p>
+          <p>&copy; {currentYear} Garkuwa Poultry Farm. All rights reserved.</p>
         </div>
       </div>
     </footer>
