@@ -19,23 +19,20 @@ interface FreelancerDetailProps {
   id: number;
 }
 
-export default function FreelancerDetail({ id }: FreelancerDetailProps) {
+export default function PoultryDetail({ id }: { id: number }) {
   const [, navigate] = useLocation();
 
-  // Placeholder for a full implementation
-  const freelancer = {
+  const poultry = {
     id,
-    name: "John Doe",
-    title: "Full Stack Developer",
+    name: "Golden Chicken",
+    breed: "Rhode Island Red",
     location: "New York, USA",
-    rating: 4.9,
-    reviewCount: 28,
-    hourlyRate: 45,
-    bio: "I'm a full-stack developer with 5+ years of experience specializing in React, Node.js, and MongoDB. I've worked with startups and enterprise clients to build responsive web applications with a focus on clean code and user experience.",
-    skills: ["React", "Node.js", "MongoDB", "TypeScript", "Express", "GraphQL"],
+    weight: "2.5 lbs",
+    eggProduction: "250 eggs/year",
     memberSince: "Jan 2020",
-    completedProjects: 32,
-    avatar: undefined
+    farmLocation: "Sunshine Farm",
+    bio: "This breed is known for its excellent egg-laying abilities and resilient nature. It's a popular choice for both small farms and larger poultry operations.",
+    skills: ["Egg Production", "Hardiness", "Feed Efficiency"]
   };
 
   return (

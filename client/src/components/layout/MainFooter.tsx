@@ -72,26 +72,26 @@ export function MainFooter() {
           </div>
 
           <div>
-            <h3 className="font-medium text-base mb-4">For Freelancers</h3>
+            <h3 className="font-medium text-base mb-4">For Poultry Keepers</h3>
             <ul className="space-y-3">
               <li>
                 <Link href="/projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Find Work
+                  Find Breeds
                 </Link>
               </li>
               <li>
                 <Link href="/register" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Join as a Freelancer
+                  Join as a Poultry Keeper
                 </Link>
               </li>
               <li>
                 <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Build Portfolio
+                  Build Poultry Profile
                 </Link>
               </li>
               <li>
                 <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Get Paid Securely
+                  Manage Livestock Securely
                 </Link>
               </li>
             </ul>

@@ -23,9 +23,9 @@ export default function Freelancers() {
     <div className="container py-8">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Find Freelancers</h1>
+          <h1 className="text-3xl font-bold">Find Poultry</h1>
           <p className="text-muted-foreground">
-            Discover top talent for your projects
+            Discover top breeds for your farm
           </p>
         </div>
       </div>
