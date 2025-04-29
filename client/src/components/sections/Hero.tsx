@@ -5,7 +5,7 @@ export default function Hero() {
     <section id="home" className="relative bg-[#224722] text-white">
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" 
+          src="https://images.unsplash.com/photo-1582337834390-66ea8fcbdea3?crop&w=1950&q=80" 
           alt="Poultry farm view" 
           className="w-full h-full object-cover opacity-40"
         />
