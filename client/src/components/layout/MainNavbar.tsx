@@ -42,7 +42,6 @@ export function MainNavbar() {
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <Briefcase className="h-6 w-6 mr-2 text-primary" />
-            <span className="text-xl font-bold">Garkuwa Poultry Farm</span>
           </Link>
           <nav className="mx-6 hidden md:flex items-center space-x-4 lg:space-x-6">
             <Link href="/" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/' ? 'text-primary' : 'text-muted-foreground'}`}>
