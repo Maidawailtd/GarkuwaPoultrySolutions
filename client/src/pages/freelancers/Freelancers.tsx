@@ -25,7 +25,7 @@ export default function Freelancers() {
         <div>
           <h1 className="text-3xl font-bold">Find Poultry</h1>
           <p className="text-muted-foreground">
-            Discover top breeds for your farm
+            Explore our top poultry breeds
           </p>
         </div>
       </div>

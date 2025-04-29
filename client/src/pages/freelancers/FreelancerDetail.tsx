@@ -43,9 +43,9 @@ export default function PoultryDetail({ id }: { id: number }) {
         className="mb-6"
       >
         <ArrowLeft className="mr-2 h-4 w-4" />
-        Back to Freelancers
+        Back to Poultry
       </Button>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Sidebar */}
         <div className="space-y-6">
@@ -53,44 +53,44 @@ export default function PoultryDetail({ id }: { id: number }) {
             <CardContent className="pt-6">
               <div className="flex flex-col items-center text-center">
                 <Avatar className="h-24 w-24 mb-4">
-                  <AvatarImage src={freelancer.avatar} alt={freelancer.name} />
+                  <AvatarImage src={poultry.avatar} alt={poultry.name} />
                   <AvatarFallback className="text-lg">
-                    {freelancer.name.split(' ').map(n => n[0]).join('')}
+                    {poultry.name.split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
                 </Avatar>
-                <h2 className="text-xl font-bold">{freelancer.name}</h2>
-                <p className="text-muted-foreground mt-1">{freelancer.title}</p>
-                
+                <h2 className="text-xl font-bold">{poultry.name}</h2>
+                <p className="text-muted-foreground mt-1">{poultry.breed}</p>
+
                 <div className="flex items-center mt-2">
                   <Star className="h-4 w-4 text-yellow-400 mr-1" />
-                  <span className="font-medium">{freelancer.rating}</span>
+                  <span className="font-medium">5</span>
                   <span className="text-muted-foreground ml-1">
-                    ({freelancer.reviewCount} reviews)
+                    (0 reviews)
                   </span>
                 </div>
-                
+
                 <div className="flex items-center justify-center mt-2 text-sm text-muted-foreground">
                   <MapPin className="h-4 w-4 mr-1" />
-                  <span>{freelancer.location}</span>
+                  <span>{poultry.location}</span>
                 </div>
-                
+
                 <div className="mt-4 font-medium">
-                  ${freelancer.hourlyRate}/hr
+                  N/A
                 </div>
               </div>
             </CardContent>
             <CardFooter>
-              <Button className="w-full">Contact</Button>
+              <Button className="w-full">Learn More</Button>
             </CardFooter>
           </Card>
-          
+
           <Card>
             <CardHeader>
-              <CardTitle>Skills</CardTitle>
+              <CardTitle>Characteristics</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-2">
-                {freelancer.skills.map((skill, index) => (
+                {poultry.skills.map((skill, index) => (
                   <Badge key={index} variant="secondary">
                     {skill}
                   </Badge>
@@ -98,7 +98,7 @@ export default function PoultryDetail({ id }: { id: number }) {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>Information</CardTitle>
@@ -108,60 +108,57 @@ export default function PoultryDetail({ id }: { id: number }) {
                 <Calendar className="h-5 w-5 mr-2 text-muted-foreground mt-0.5" />
                 <div>
                   <p className="font-medium">Member Since</p>
-                  <p className="text-muted-foreground">{freelancer.memberSince}</p>
+                  <p className="text-muted-foreground">{poultry.memberSince}</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start">
                 <Briefcase className="h-5 w-5 mr-2 text-muted-foreground mt-0.5" />
                 <div>
-                  <p className="font-medium">Completed Projects</p>
-                  <p className="text-muted-foreground">{freelancer.completedProjects}</p>
+                  <p className="font-medium">Egg Production</p>
+                  <p className="text-muted-foreground">{poultry.eggProduction}</p>
                 </div>
               </div>
             </CardContent>
           </Card>
         </div>
-        
+
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>About Me</CardTitle>
+              <CardTitle>About {poultry.name}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                {freelancer.bio}
+                {poultry.bio}
               </p>
             </CardContent>
           </Card>
-          
+
           <Tabs defaultValue="portfolio">
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
+              <TabsTrigger value="portfolio">Details</TabsTrigger>
               <TabsTrigger value="reviews">Reviews</TabsTrigger>
-              <TabsTrigger value="experience">Experience</TabsTrigger>
+              <TabsTrigger value="experience">Farm</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="portfolio" className="mt-4">
               <Card>
                 <CardHeader>
-                  <CardTitle>Portfolio</CardTitle>
+                  <CardTitle>Breed Details</CardTitle>
                   <CardDescription>
-                    Recent projects and work samples
+                    More information about {poultry.name}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-col items-center justify-center py-8 text-center">
-                    <Briefcase className="h-12 w-12 text-muted-foreground mb-3" />
-                    <CardDescription>
-                      This freelancer hasn't added any portfolio items yet.
-                    </CardDescription>
-                  </div>
+                  <p>Weight: {poultry.weight}</p>
+                  <p>Farm Location: {poultry.farmLocation}</p>
+
                 </CardContent>
               </Card>
             </TabsContent>
-            
+
             <TabsContent value="reviews" className="mt-4">
               <Card>
                 <CardHeader>
@@ -179,7 +176,7 @@ export default function PoultryDetail({ id }: { id: number }) {
                             <AvatarFallback>BC</AvatarFallback>
                           </Avatar>
                           <div>
-                            <p className="font-medium">Business Client</p>
+                            <p className="font-medium">Customer Review</p>
                             <p className="text-xs text-muted-foreground">March 2023</p>
                           </div>
                         </div>
@@ -190,67 +187,32 @@ export default function PoultryDetail({ id }: { id: number }) {
                         </div>
                       </div>
                       <p className="text-sm">
-                        "John delivered exceptional work on our web application. He was professional, responsive, and delivered ahead of schedule. Highly recommended!"
-                      </p>
-                    </div>
-                    
-                    <div className="bg-muted/50 p-4 rounded-lg">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center">
-                          <Avatar className="h-8 w-8 mr-2">
-                            <AvatarFallback>TC</AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <p className="font-medium">Tech Company</p>
-                            <p className="text-xs text-muted-foreground">January 2023</p>
-                          </div>
-                        </div>
-                        <div className="flex">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <Star key={star} className="h-4 w-4 text-yellow-400" />
-                          ))}
-                        </div>
-                      </div>
-                      <p className="text-sm">
-                        "Great communication and technical skills. John helped us optimize our application performance and implement new features. Will hire again!"
+                        "Excellent egg layer!"
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </TabsContent>
-            
+
             <TabsContent value="experience" className="mt-4">
               <Card>
                 <CardHeader>
-                  <CardTitle>Work Experience</CardTitle>
+                  <CardTitle>Farm Information</CardTitle>
                   <CardDescription>
-                    Professional history and experience
+                    Information about Sunshine Farm
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-4">
                     <div>
                       <div className="flex justify-between items-start mb-1">
-                        <h3 className="font-semibold">Senior Developer</h3>
+                        <h3 className="font-semibold">Sunshine Farm</h3>
                         <span className="text-sm text-muted-foreground">2020 - Present</span>
                       </div>
-                      <p className="text-sm font-medium mb-1">Tech Solutions Inc.</p>
+                      <p className="text-sm font-medium mb-1">Sunshine Farm</p>
                       <p className="text-sm text-muted-foreground">
-                        Led development of web applications using React and Node.js. Worked with clients to gather requirements and deliver solutions on time and within budget.
-                      </p>
-                    </div>
-                    
-                    <Separator />
-                    
-                    <div>
-                      <div className="flex justify-between items-start mb-1">
-                        <h3 className="font-semibold">Web Developer</h3>
-                        <span className="text-sm text-muted-foreground">2018 - 2020</span>
-                      </div>
-                      <p className="text-sm font-medium mb-1">Digital Agency</p>
-                      <p className="text-sm text-muted-foreground">
-                        Developed responsive websites and web applications for various clients. Utilized modern JavaScript frameworks and collaborated with design teams.
+                       Family run farm dedicated to sustainable poultry practices.
                       </p>
                     </div>
                   </div>
