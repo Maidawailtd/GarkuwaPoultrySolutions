@@ -118,8 +118,8 @@ export function MainNavbar() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                     <Avatar>
-                      <AvatarImage src={user?.avatar || undefined} />
-                      <AvatarFallback>{getInitials(user?.fullName)}</AvatarFallback>
+                      <AvatarImage src={user?.profileImageUrl || undefined} />
+                      <AvatarFallback>{getInitials(user?.firstName && user?.lastName ? `${user.firstName} ${user.lastName}` : user?.email || '')}</AvatarFallback>
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
@@ -208,11 +208,11 @@ export function MainNavbar() {
                   <div className="border-t pt-4 mt-4">
                     <div className="flex items-center p-2">
                       <Avatar className="h-9 w-9 mr-3">
-                        <AvatarImage src={user?.avatar || undefined} />
-                        <AvatarFallback>{getInitials(user?.fullName)}</AvatarFallback>
+                        <AvatarImage src={user?.profileImageUrl || undefined} />
+                        <AvatarFallback>{getInitials(user?.firstName && user?.lastName ? `${user.firstName} ${user.lastName}` : user?.email || '')}</AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="text-sm font-medium">{user?.fullName}</p>
+                        <p className="text-sm font-medium">{user?.firstName && user?.lastName ? `${user.firstName} ${user.lastName}` : user?.email}</p>
                         <p className="text-xs text-muted-foreground">{user?.email}</p>
                       </div>
                     </div>
