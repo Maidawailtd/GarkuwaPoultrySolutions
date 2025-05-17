@@ -150,7 +150,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Get current user
-  app.get("/api/auth/me", authenticateToken, async (req, res) => {
+  app.get("/api/auth/me", isAuthenticated, async (req, res) => {
     try {
       const userId = (req as any).user.id;
       const user = await storage.getUser(userId);
@@ -211,7 +211,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Update user profile
-  app.put("/api/users/:id", authenticateToken, async (req, res) => {
+  app.put("/api/users/:id", isAuthenticated, async (req, res) => {
     try {
       const userId = parseInt(req.params.id);
       const currentUser = (req as any).user;
@@ -327,7 +327,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Create category (admin only)
-  app.post("/api/categories", authenticateToken, async (req, res) => {
+  app.post("/api/categories", isAuthenticated, async (req, res) => {
     try {
       const currentUser = (req as any).user;
       
@@ -463,7 +463,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Create project
-  app.post("/api/projects", authenticateToken, async (req, res) => {
+  app.post("/api/projects", isAuthenticated, async (req, res) => {
     try {
       const currentUser = (req as any).user;
       
@@ -506,7 +506,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Update project
-  app.put("/api/projects/:id", authenticateToken, async (req, res) => {
+  app.put("/api/projects/:id", isAuthenticated, async (req, res) => {
     try {
       const projectId = parseInt(req.params.id);
       const currentUser = (req as any).user;
@@ -546,7 +546,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Delete project
-  app.delete("/api/projects/:id", authenticateToken, async (req, res) => {
+  app.delete("/api/projects/:id", isAuthenticated, async (req, res) => {
     try {
       const projectId = parseInt(req.params.id);
       const currentUser = (req as any).user;
@@ -589,7 +589,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // =====================
   
   // Get proposals for a project
-  app.get("/api/projects/:id/proposals", authenticateToken, async (req, res) => {
+  app.get("/api/projects/:id/proposals", isAuthenticated, async (req, res) => {
     try {
       const projectId = parseInt(req.params.id);
       const currentUser = (req as any).user;
@@ -628,7 +628,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Get freelancer's proposals
-  app.get("/api/my-proposals", authenticateToken, async (req, res) => {
+  app.get("/api/my-proposals", isAuthenticated, async (req, res) => {
     try {
       const currentUser = (req as any).user;
       
@@ -656,7 +656,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Submit a proposal
-  app.post("/api/projects/:id/proposals", authenticateToken, async (req, res) => {
+  app.post("/api/projects/:id/proposals", isAuthenticated, async (req, res) => {
     try {
       const projectId = parseInt(req.params.id);
       const currentUser = (req as any).user;
@@ -722,7 +722,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // =====================
   
   // Get user's contracts
-  app.get("/api/contracts", authenticateToken, async (req, res) => {
+  app.get("/api/contracts", isAuthenticated, async (req, res) => {
     try {
       const currentUser = (req as any).user;
       const role = currentUser.role === UserRole.CLIENT ? 'client' : 'freelancer';
@@ -743,7 +743,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Get contract by ID
-  app.get("/api/contracts/:id", authenticateToken, async (req, res) => {
+  app.get("/api/contracts/:id", isAuthenticated, async (req, res) => {
     try {
       const contractId = parseInt(req.params.id);
       const currentUser = (req as any).user;
@@ -781,7 +781,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Create a contract (from a proposal)
-  app.post("/api/contracts", authenticateToken, async (req, res) => {
+  app.post("/api/contracts", isAuthenticated, async (req, res) => {
     try {
       const currentUser = (req as any).user;
       
@@ -850,7 +850,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Update contract status
-  app.put("/api/contracts/:id", authenticateToken, async (req, res) => {
+  app.put("/api/contracts/:id", isAuthenticated, async (req, res) => {
     try {
       const contractId = parseInt(req.params.id);
       const currentUser = (req as any).user;
@@ -922,7 +922,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Submit a review
-  app.post("/api/contracts/:id/reviews", authenticateToken, async (req, res) => {
+  app.post("/api/contracts/:id/reviews", isAuthenticated, async (req, res) => {
     try {
       const contractId = parseInt(req.params.id);
       const currentUser = (req as any).user;
@@ -994,7 +994,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // =====================
   
   // Get conversation between two users
-  app.get("/api/messages/:userId", authenticateToken, async (req, res) => {
+  app.get("/api/messages/:userId", isAuthenticated, async (req, res) => {
     try {
       const currentUser = (req as any).user;
       const otherUserId = parseInt(req.params.userId);
@@ -1016,7 +1016,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Send a message
-  app.post("/api/messages", authenticateToken, async (req, res) => {
+  app.post("/api/messages", isAuthenticated, async (req, res) => {
     try {
       const currentUser = (req as any).user;
       
@@ -1051,7 +1051,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Mark message as read
-  app.put("/api/messages/:id/read", authenticateToken, async (req, res) => {
+  app.put("/api/messages/:id/read", isAuthenticated, async (req, res) => {
     try {
       const messageId = parseInt(req.params.id);
       
@@ -1071,7 +1071,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Get unread messages count
-  app.get("/api/messages/unread/count", authenticateToken, async (req, res) => {
+  app.get("/api/messages/unread/count", isAuthenticated, async (req, res) => {
     try {
       const currentUser = (req as any).user;
       
@@ -1118,7 +1118,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // =====================
   
   // Get payments for a contract
-  app.get("/api/contracts/:id/payments", authenticateToken, async (req, res) => {
+  app.get("/api/contracts/:id/payments", isAuthenticated, async (req, res) => {
     try {
       const contractId = parseInt(req.params.id);
       const currentUser = (req as any).user;
@@ -1158,7 +1158,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Create a payment
-  app.post("/api/payments", authenticateToken, async (req, res) => {
+  app.post("/api/payments", isAuthenticated, async (req, res) => {
     try {
       const currentUser = (req as any).user;
       
@@ -1205,7 +1205,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Update payment status
-  app.put("/api/payments/:id", authenticateToken, async (req, res) => {
+  app.put("/api/payments/:id", isAuthenticated, async (req, res) => {
     try {
       const paymentId = parseInt(req.params.id);
       const currentUser = (req as any).user;
