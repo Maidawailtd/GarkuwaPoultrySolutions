@@ -54,7 +54,7 @@ export function MainNavbar() {
   }, []);
 
   const handleLogout = () => {
-    logout();
+    window.location.href = '/api/logout';
   };
 
   const getInitials = (name?: string) => {
@@ -143,12 +143,12 @@ export function MainNavbar() {
             </div>
           ) : (
             <>
-              <Link href="/login">
+              <a href="/api/login">
                 <Button variant="outline" className="text-white border-white hover:bg-white hover:text-primary">Log in</Button>
-              </Link>
-              <Link href="/register">
+              </a>
+              <a href="/api/login">
                 <Button className="bg-secondary text-primary hover:bg-secondary/90">Sign up</Button>
-              </Link>
+              </a>
             </>
           )}
         </div>
