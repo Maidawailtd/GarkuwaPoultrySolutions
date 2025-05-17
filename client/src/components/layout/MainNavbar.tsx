@@ -74,30 +74,30 @@ export function MainNavbar() {
             <img 
               src="/images/logo.png" 
               alt="Garkuwa Livestock Farm Logo" 
-              className="h-16 w-auto mr-3" 
+              className="h-20 w-auto mr-3" 
             />
-            <span className="text-xl font-bold">Garkuwa Livestock Farm</span>
+            <span className="text-2xl font-bold">Garkuwa Livestock Farm</span>
           </Link>
           <nav className="mx-6 hidden md:flex items-center space-x-4 lg:space-x-6">
-            <Link href="/" className={`text-sm font-medium transition-colors hover:text-secondary ${location === '/' ? 'text-secondary' : 'text-white'}`}>
+            <Link href="/" className={`text-base font-medium transition-colors hover:text-secondary ${location === '/' ? 'text-secondary font-bold' : 'text-white'}`}>
               Home
             </Link>
-            <Link href="/about" className={`text-sm font-medium transition-colors hover:text-secondary ${location === '/about' ? 'text-secondary' : 'text-white'}`}>
+            <Link href="/about" className={`text-base font-medium transition-colors hover:text-secondary ${location === '/about' ? 'text-secondary font-bold' : 'text-white'}`}>
               About
             </Link>
-            <Link href="/livestock" className={`text-sm font-medium transition-colors hover:text-secondary ${location === '/livestock' ? 'text-secondary' : 'text-white'}`}>
+            <Link href="/livestock" className={`text-base font-medium transition-colors hover:text-secondary ${location === '/livestock' ? 'text-secondary font-bold' : 'text-white'}`}>
               Livestock
             </Link>
-            <Link href="/products" className={`text-sm font-medium transition-colors hover:text-secondary ${location === '/products' ? 'text-secondary' : 'text-white'}`}>
+            <Link href="/products" className={`text-base font-medium transition-colors hover:text-secondary ${location === '/products' ? 'text-secondary font-bold' : 'text-white'}`}>
               Products
             </Link>
-            <Link href="/facilities" className={`text-sm font-medium transition-colors hover:text-secondary ${location === '/facilities' ? 'text-secondary' : 'text-white'}`}>
+            <Link href="/facilities" className={`text-base font-medium transition-colors hover:text-secondary ${location === '/facilities' ? 'text-secondary font-bold' : 'text-white'}`}>
               Facilities
             </Link>
-            <Link href="/training" className={`text-sm font-medium transition-colors hover:text-secondary ${location === '/training' ? 'text-secondary' : 'text-white'}`}>
+            <Link href="/training" className={`text-base font-medium transition-colors hover:text-secondary ${location === '/training' ? 'text-secondary font-bold' : 'text-white'}`}>
               Training
             </Link>
-            <Link href="/contact" className={`text-sm font-medium transition-colors hover:text-secondary ${location === '/contact' ? 'text-secondary' : 'text-white'}`}>
+            <Link href="/contact" className={`text-base font-medium transition-colors hover:text-secondary ${location === '/contact' ? 'text-secondary font-bold' : 'text-white'}`}>
               Contact
             </Link>
           </nav>
@@ -173,7 +173,7 @@ export function MainNavbar() {
                 <img 
                   src="/images/logo.png" 
                   alt="Garkuwa Livestock Farm Logo" 
-                  className="h-10 w-auto mr-2" 
+                  className="h-14 w-auto mr-2" 
                 />
                 <span className="text-xl font-bold text-primary">Garkuwa Livestock Farm</span>
               </Link>
@@ -208,6 +208,12 @@ export function MainNavbar() {
               <Link href="/cart" onClick={() => setIsMenuOpen(false)} className={`block text-base font-medium p-2 rounded-lg hover:bg-muted ${location === '/cart' ? 'bg-muted' : ''}`}>
                 Cart {cartCount > 0 && `(${cartCount})`}
               </Link>
+              
+              {/* WhatsApp link in mobile menu */}
+              <a href="https://wa.me/+2348123456789" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2 mt-4 bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 transition-colors">
+                <img src="/images/whatsapp-icon.jpg" alt="WhatsApp" className="h-6 w-6 rounded-sm" />
+                <span className="font-medium">Chat with us on WhatsApp</span>
+              </a>
 
               {isAuthenticated ? (
                 <>

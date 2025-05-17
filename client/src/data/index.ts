@@ -12,7 +12,7 @@ export const categories = [
     name: "Cattle",
     slug: "cattle",
     description: "Healthy dairy and beef cattle for high yields",
-    image: "/images/owner.jpg"
+    image: "/images/cattles.jpg"
   },
   {
     name: "Broiler Chickens",
