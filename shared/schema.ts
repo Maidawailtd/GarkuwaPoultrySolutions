@@ -50,7 +50,7 @@ export const projects = pgTable("projects", {
   description: text("description").notNull(),
   budget: doublePrecision("budget"),
   deadline: timestamp("deadline"),
-  clientId: integer("client_id").notNull().references(() => users.id),
+  clientId: varchar("client_id").notNull().references(() => users.id),
   categoryId: integer("category_id").references(() => categories.id),
   status: text("status").notNull().default("open"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
@@ -61,7 +61,7 @@ export const projects = pgTable("projects", {
 export const proposals = pgTable("proposals", {
   id: serial("id").primaryKey(),
   projectId: integer("project_id").notNull().references(() => projects.id),
-  freelancerId: integer("freelancer_id").notNull().references(() => users.id),
+  freelancerId: varchar("freelancer_id").notNull().references(() => users.id),
   coverLetter: text("cover_letter").notNull(),
   bidAmount: doublePrecision("bid_amount").notNull(),
   estimatedDuration: integer("estimated_duration"),
@@ -72,8 +72,8 @@ export const proposals = pgTable("proposals", {
 export const contracts = pgTable("contracts", {
   id: serial("id").primaryKey(),
   projectId: integer("project_id").notNull().references(() => projects.id),
-  clientId: integer("client_id").notNull().references(() => users.id),
-  freelancerId: integer("freelancer_id").notNull().references(() => users.id),
+  clientId: varchar("client_id").notNull().references(() => users.id),
+  freelancerId: varchar("freelancer_id").notNull().references(() => users.id),
   proposalId: integer("proposal_id").references(() => proposals.id),
   startDate: timestamp("start_date").notNull(),
   endDate: timestamp("end_date"),
@@ -87,8 +87,8 @@ export const contracts = pgTable("contracts", {
 export const reviews = pgTable("reviews", {
   id: serial("id").primaryKey(),
   contractId: integer("contract_id").notNull().references(() => contracts.id),
-  reviewerId: integer("reviewer_id").notNull().references(() => users.id),
-  revieweeId: integer("reviewee_id").notNull().references(() => users.id),
+  reviewerId: varchar("reviewer_id").notNull().references(() => users.id),
+  revieweeId: varchar("reviewee_id").notNull().references(() => users.id),
   rating: integer("rating").notNull(),
   comment: text("comment"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
@@ -96,8 +96,8 @@ export const reviews = pgTable("reviews", {
 
 export const messages = pgTable("messages", {
   id: serial("id").primaryKey(),
-  senderId: integer("sender_id").notNull().references(() => users.id),
-  receiverId: integer("receiver_id").notNull().references(() => users.id),
+  senderId: varchar("sender_id").notNull().references(() => users.id),
+  receiverId: varchar("receiver_id").notNull().references(() => users.id),
   content: text("content").notNull(),
   isRead: boolean("is_read").default(false),
   projectId: integer("project_id").references(() => projects.id),
