@@ -19,8 +19,8 @@ CREATE TABLE "contact_submissions" (
 CREATE TABLE "contracts" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"project_id" integer NOT NULL,
-	"client_id" integer NOT NULL,
-	"freelancer_id" integer NOT NULL,
+	"client_id" varchar NOT NULL,
+	"freelancer_id" varchar NOT NULL,
 	"proposal_id" integer,
 	"start_date" timestamp NOT NULL,
 	"end_date" timestamp,
@@ -33,8 +33,8 @@ CREATE TABLE "contracts" (
 --> statement-breakpoint
 CREATE TABLE "messages" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"sender_id" integer NOT NULL,
-	"receiver_id" integer NOT NULL,
+	"sender_id" varchar NOT NULL,
+	"receiver_id" varchar NOT NULL,
 	"content" text NOT NULL,
 	"is_read" boolean DEFAULT false,
 	"project_id" integer,
@@ -58,7 +58,7 @@ CREATE TABLE "projects" (
 	"description" text NOT NULL,
 	"budget" double precision,
 	"deadline" timestamp,
-	"client_id" integer NOT NULL,
+	"client_id" varchar NOT NULL,
 	"category_id" integer,
 	"status" text DEFAULT 'open' NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE "projects" (
 CREATE TABLE "proposals" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"project_id" integer NOT NULL,
-	"freelancer_id" integer NOT NULL,
+	"freelancer_id" varchar NOT NULL,
 	"cover_letter" text NOT NULL,
 	"bid_amount" double precision NOT NULL,
 	"estimated_duration" integer,
@@ -80,8 +80,8 @@ CREATE TABLE "proposals" (
 CREATE TABLE "reviews" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"contract_id" integer NOT NULL,
-	"reviewer_id" integer NOT NULL,
-	"reviewee_id" integer NOT NULL,
+	"reviewer_id" varchar NOT NULL,
+	"reviewee_id" varchar NOT NULL,
 	"rating" integer NOT NULL,
 	"comment" text,
 	"created_at" timestamp DEFAULT now() NOT NULL

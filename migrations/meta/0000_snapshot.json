@@ -1,5 +1,5 @@
 {
-  "id": "7a25d1f7-a9c8-49ad-b654-0bf040eae65e",
+  "id": "7eb8b2c2-037b-48cd-a568-22f452752dc9",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -123,13 +123,13 @@
         },
         "client_id": {
           "name": "client_id",
-          "type": "integer",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
         "freelancer_id": {
           "name": "freelancer_id",
-          "type": "integer",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
@@ -257,13 +257,13 @@
         },
         "sender_id": {
           "name": "sender_id",
-          "type": "integer",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
         "receiver_id": {
           "name": "receiver_id",
-          "type": "integer",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
@@ -455,7 +455,7 @@
         },
         "client_id": {
           "name": "client_id",
-          "type": "integer",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
@@ -545,7 +545,7 @@
         },
         "freelancer_id": {
           "name": "freelancer_id",
-          "type": "integer",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
@@ -635,13 +635,13 @@
         },
         "reviewer_id": {
           "name": "reviewer_id",
-          "type": "integer",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
         "reviewee_id": {
           "name": "reviewee_id",
-          "type": "integer",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
