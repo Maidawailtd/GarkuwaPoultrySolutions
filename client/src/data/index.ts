@@ -3,52 +3,52 @@
 // Livestock Categories
 export const categories = [
   {
-    name: "Broiler Chickens",
-    slug: "broilers",
-    description: "Fast-growing meat birds raised for commercial production",
-    image: "/attached_assets/broilers.jpg"
-  },
-  {
-    name: "Layer Hens",
-    slug: "layers",
-    description: "Egg-producing chickens optimized for high yield",
-    image: "/attached_assets/farm-facility-2.jpg"
-  },
-  {
-    name: "Farm Birds",
-    slug: "farm-birds",
-    description: "Various poultry species for diverse farming operations",
-    image: "/attached_assets/ducks.jpg"
-  },
-  {
-    name: "Egg Production",
-    slug: "eggs",
-    description: "Fresh eggs from our free-range and cage systems",
-    image: "/attached_assets/farm-facility-1.jpg"
+    name: "Sheep & Rams",
+    slug: "sheep-rams",
+    description: "Premium sheep and rams raised for meat and breeding",
+    image: "/images/manager.jpg"
   },
   {
     name: "Cattle",
     slug: "cattle",
     description: "Healthy dairy and beef cattle for high yields",
-    image: "/attached_assets/cow.jpg"
+    image: "/images/owner.jpg"
   },
   {
-    name: "Modern Housing",
-    slug: "housing",
-    description: "Advanced housing systems for optimal livestock management",
-    image: "/attached_assets/farm-facility-3.jpg"
+    name: "Broiler Chickens",
+    slug: "broilers",
+    description: "Fast-growing meat birds raised for commercial production",
+    image: "/images/broilers.jpg"
+  },
+  {
+    name: "Layer Hens",
+    slug: "layers",
+    description: "Egg-producing chickens optimized for high yield",
+    image: "/images/fresh-eggs.jpg"
+  },
+  {
+    name: "Turkeys",
+    slug: "turkeys",
+    description: "Farm-raised turkeys for meat production",
+    image: "/images/turkeys.jpg"
   },
   {
     name: "Fish Farming",
     slug: "fish",
     description: "Sustainable aquaculture for protein production",
-    image: "/attached_assets/fish-farming.jpg"
+    image: "/images/fishs.jpg"
   },
   {
-    name: "Organic Feed",
-    slug: "feed",
-    description: "High-quality feeds for optimal livestock growth",
-    image: "/attached_assets/eggs3.jpg"
+    name: "Farm Birds",
+    slug: "farm-birds",
+    description: "Various poultry species for diverse farming operations",
+    image: "/images/live-chickens.jpg"
+  },
+  {
+    name: "Egg Production",
+    slug: "eggs",
+    description: "Fresh eggs from our free-range and cage systems",
+    image: "/images/fresh-eggs.jpg"
   }
 ];
 
@@ -56,66 +56,93 @@ export const categories = [
 export const programs = [
   {
     id: 1,
+    title: "Sheep & Ram Breeding",
+    description: "Learn modern techniques for breeding and raising healthy sheep and rams",
+    duration: "5 weeks",
+    schedule: "Weekdays",
+    price: "₦60,000",
+    image: "/images/manager.jpg"
+  },
+  {
+    id: 2,
     title: "Commercial Broiler Production",
     description: "Learn modern techniques for efficient broiler farming at scale",
     duration: "4 weeks",
     schedule: "Weekdays",
     price: "₦50,000",
-    image: "https://images.unsplash.com/photo-1548963607-e4b6c46f30d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+    image: "/images/live-chickens.jpg"
   },
   {
-    id: 2,
+    id: 3,
     title: "Layer Management",
     description: "Master egg production with optimal hen health and housing",
     duration: "4 weeks",
     schedule: "Weekends",
     price: "₦45,000",
-    image: "https://images.unsplash.com/photo-1518214598173-1666bc921d66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+    image: "/images/fresh-eggs.jpg"
   },
   {
-    id: 3,
-    title: "Small Ruminant Farming",
-    description: "Comprehensive guide to raising goats and sheep for profit",
+    id: 4,
+    title: "Cattle Rearing & Management",
+    description: "Comprehensive training on raising healthy cattle for meat and dairy",
+    duration: "6 weeks",
+    schedule: "Weekdays",
+    price: "₦75,000",
+    image: "/images/owner.jpg"
+  },
+  {
+    id: 5,
+    title: "Fish Farming",
+    description: "Complete guide to commercial fish farming and aquaculture",
+    duration: "4 weeks",
+    schedule: "Weekends",
+    price: "₦55,000",
+    image: "/images/fishs.jpg"
+  },
+  {
+    id: 6,
+    title: "Turkey Production",
+    description: "Learn specialized techniques for raising healthy turkeys",
     duration: "3 weeks",
     schedule: "Weekdays",
     price: "₦40,000",
-    image: "https://images.unsplash.com/photo-1560263816-d704d3e011dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+    image: "/images/turkeys.jpg"
   }
 ];
 
 // Gallery Items
 export const galleryItems = [
   {
-    image: "/attached_assets/broilers.jpg",
-    caption: "Healthy broiler chickens in our free-range area"
+    image: "/images/manager.jpg",
+    caption: "Premium quality sheep raised for meat and breeding"
   },
   {
-    image: "/attached_assets/farm-facility-2.jpg",
-    caption: "Free-range layer hens producing organic eggs"
-  },
-  {
-    image: "/attached_assets/cow.jpg",
+    image: "/images/owner.jpg",
     caption: "Healthy cattle raised with premium care"
   },
   {
-    image: "/attached_assets/farm-facility-3.jpg",
-    caption: "Modern battery cage system for egg production"
+    image: "/images/broilers.jpg",
+    caption: "Healthy broiler chickens in our free-range area"
   },
   {
-    image: "/attached_assets/ducks.jpg",
-    caption: "Various farm birds from our poultry program"
+    image: "/images/fresh-eggs.jpg",
+    caption: "Free-range layer hens producing organic eggs"
   },
   {
-    image: "/attached_assets/eggs3.jpg",
-    caption: "Layer hens with feeding system for optimal production"
+    image: "/images/turkeys.jpg",
+    caption: "Farm-raised turkeys for quality meat production"
   },
   {
-    image: "/attached_assets/farm-facility-1.jpg",
-    caption: "Premium quality eggs from our layer operations"
-  },
-  {
-    image: "/attached_assets/fish-farming.jpg",
+    image: "/images/fishs.jpg",
     caption: "Intensive catfish farming operations"
+  },
+  {
+    image: "/images/hero-farm.jpg",
+    caption: "State-of-the-art poultry housing facilities"
+  },
+  {
+    image: "/images/live-chickens.jpg",
+    caption: "Layer hens with feeding system for optimal production"
   }
 ];
 
@@ -123,23 +150,23 @@ export const galleryItems = [
 export const testimonials = [
   {
     name: "Aisha Mohammed",
-    role: "Small-scale Farmer",
-    avatar: "/attached_assets/customer-1.jpg",
-    quote: "The training at Garkuwa Poultry Farm transformed my small backyard operation into a profitable business. The practical approach and ongoing support have been invaluable.",
+    role: "Sheep Farmer",
+    avatar: "/images/customer-1.jpg",
+    quote: "The sheep breeding training at Garkuwa Livestock Farm transformed my small operation into a profitable business. Their practical approach and ongoing support have been invaluable.",
     rating: 5
   },
   {
     name: "Emmanuel Okonkwo",
-    role: "Commercial Farmer",
-    avatar: "/attached_assets/customer-2.jpg",
+    role: "Commercial Poultry Farmer",
+    avatar: "/images/customer-2.jpg",
     quote: "I've attended many agricultural workshops, but none as comprehensive as Garkuwa's. Their broiler production program helped me increase my flock efficiency by over 30%.",
     rating: 5
   },
   {
     name: "Fatima Ibrahim",
-    role: "Agricultural Student",
-    avatar: "/attached_assets/farm-facility-2.jpg",
-    quote: "As a student, the hands-on experience I gained at Garkuwa was more valuable than years of theoretical study. Their staff are true experts in poultry management.",
+    role: "Cattle Rancher",
+    avatar: "/images/customer-1.jpg",
+    quote: "The cattle management program at Garkuwa gave me practical skills that I immediately applied to my ranch. My cattle are healthier and more productive than ever before.",
     rating: 4
   }
 ];

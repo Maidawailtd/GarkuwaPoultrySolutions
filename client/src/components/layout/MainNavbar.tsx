@@ -71,8 +71,12 @@ export function MainNavbar() {
       <div className="container flex items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
-            {/* Replace with actual logo when available */}
-            <span className="text-xl font-bold">Garkuwa Poultry Farm</span>
+            <img 
+              src="/images/logo.png" 
+              alt="Garkuwa Livestock Farm Logo" 
+              className="h-12 w-auto mr-2" 
+            />
+            <span className="text-xl font-bold">Garkuwa Livestock Farm</span>
           </Link>
           <nav className="mx-6 hidden md:flex items-center space-x-4 lg:space-x-6">
             <Link href="/" className={`text-sm font-medium transition-colors hover:text-secondary ${location === '/' ? 'text-secondary' : 'text-white'}`}>
@@ -160,7 +164,12 @@ export function MainNavbar() {
           <SheetContent side="right" className="w-[80%] sm:w-[350px]">
             <div className="flex justify-between items-center mb-6">
               <Link href="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
-                <span className="text-xl font-bold text-primary">Garkuwa Poultry Farm</span>
+                <img 
+                  src="/images/logo.png" 
+                  alt="Garkuwa Livestock Farm Logo" 
+                  className="h-10 w-auto mr-2" 
+                />
+                <span className="text-xl font-bold text-primary">Garkuwa Livestock Farm</span>
               </Link>
               <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
                 <X className="h-6 w-6" />
