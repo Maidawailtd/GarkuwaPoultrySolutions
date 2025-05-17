@@ -74,7 +74,7 @@ export function MainNavbar() {
             <img 
               src="/images/logo.png" 
               alt="Garkuwa Livestock Farm Logo" 
-              className="h-12 w-auto mr-2" 
+              className="h-16 w-auto mr-3" 
             />
             <span className="text-xl font-bold">Garkuwa Livestock Farm</span>
           </Link>
@@ -103,6 +103,12 @@ export function MainNavbar() {
           </nav>
         </div>
         <div className="hidden md:flex items-center space-x-4">
+          {/* WhatsApp Contact */}
+          <a href="https://wa.me/+2348123456789" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-md transition-colors">
+            <img src="/images/whatsapp-icon.jpg" alt="WhatsApp" className="h-5 w-5 rounded-sm" />
+            <span className="text-sm font-medium">Contact Us</span>
+          </a>
+        
           <Link href="/cart" className="relative">
             <Button variant="ghost" className="text-white hover:text-secondary">
               <ShoppingCart className="h-6 w-6" />
