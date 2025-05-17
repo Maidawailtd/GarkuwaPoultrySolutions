@@ -35,11 +35,11 @@ import { eq, and, desc, asc, sql, isNull, gt, lt, gte, lte, like, or } from "dri
 
 export interface IStorage {
   // User operations
-  getUser(id: number): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
+  getUser(id: string): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  updateUser(id: number, user: Partial<InsertUser>): Promise<User | undefined>;
+  updateUser(id: string, user: Partial<InsertUser>): Promise<User | undefined>;
+  upsertUser(user: any): Promise<User>;
   searchUsers(query: string, role?: string): Promise<User[]>;
 
   // Category operations
@@ -100,17 +100,13 @@ export interface IStorage {
 
 export class DatabaseStorage implements IStorage {
   // User operations
-  async getUser(id: number): Promise<User | undefined> {
+  async getUser(id: string): Promise<User | undefined> {
     const [user] = await db.select().from(users).where(eq(users.id, id));
     return user;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.username, username));
-    return user;
-  }
-
   async getUserByEmail(email: string): Promise<User | undefined> {
+    if (!email) return undefined;
     const [user] = await db.select().from(users).where(eq(users.email, email));
     return user;
   }
@@ -123,19 +119,41 @@ export class DatabaseStorage implements IStorage {
     return user;
   }
 
-  async updateUser(id: number, userData: Partial<InsertUser>): Promise<User | undefined> {
+  async updateUser(id: string, userData: Partial<InsertUser>): Promise<User | undefined> {
     const [user] = await db
       .update(users)
-      .set(userData)
+      .set({
+        ...userData,
+        updatedAt: new Date(),
+      })
       .where(eq(users.id, id))
+      .returning();
+    return user;
+  }
+  
+  async upsertUser(userData: any): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values({
+        ...userData,
+        updatedAt: new Date(),
+      })
+      .onConflictDoUpdate({
+        target: users.id,
+        set: {
+          ...userData,
+          updatedAt: new Date(),
+        },
+      })
       .returning();
     return user;
   }
 
   async searchUsers(query: string, role?: string): Promise<User[]> {
     let conditions = or(
-      like(users.username, `%${query}%`),
-      like(users.fullName, `%${query}%`),
+      like(users.firstName, `%${query}%`),
+      like(users.lastName, `%${query}%`),
+      like(users.email, `%${query}%`),
       like(users.bio, `%${query}%`)
     );
     

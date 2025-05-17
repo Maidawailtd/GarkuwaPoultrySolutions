@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp, json, doublePrecision } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, json, doublePrecision, varchar, jsonb, index } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -9,20 +9,32 @@ export const UserRole = {
   ADMIN: "admin"
 } as const;
 
+// Session storage table for Replit Auth
+export const sessions = pgTable(
+  "sessions",
+  {
+    sid: varchar("sid").primaryKey(),
+    sess: jsonb("sess").notNull(),
+    expire: timestamp("expire").notNull(),
+  },
+  (table) => [index("IDX_session_expire").on(table.expire)],
+);
+
+// User table compatible with Replit Auth
 export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  username: text("username").notNull().unique(),
-  email: text("email").notNull().unique(),
-  password: text("password").notNull(),
-  fullName: text("full_name").notNull(),
+  id: varchar("id").primaryKey().notNull(),
+  email: varchar("email").unique(),
+  firstName: varchar("first_name"),
+  lastName: varchar("last_name"),
+  profileImageUrl: varchar("profile_image_url"),
   role: text("role").notNull().default(UserRole.CLIENT),
   bio: text("bio"),
-  avatar: text("avatar"),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
   skills: text("skills").array(),
   location: text("location"),
   hourlyRate: doublePrecision("hourly_rate"),
   isVerified: boolean("is_verified").default(false),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
 export const categories = pgTable("categories", {
@@ -121,16 +133,25 @@ export const payments = pgTable("payments", {
 
 // Insert schemas
 export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
+  id: true,
   email: true,
-  password: true,
-  fullName: true,
+  firstName: true, 
+  lastName: true,
+  profileImageUrl: true,
   role: true,
   bio: true,
-  avatar: true,
   skills: true,
   location: true,
   hourlyRate: true,
+});
+
+// Define a schema for Replit Auth user upsert operations
+export const upsertUserSchema = createInsertSchema(users).pick({
+  id: true,
+  email: true,
+  firstName: true,
+  lastName: true,
+  profileImageUrl: true,
 });
 
 export const insertCategorySchema = createInsertSchema(categories).pick({
