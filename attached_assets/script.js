@@ -206,14 +206,37 @@ document.addEventListener('DOMContentLoaded', function() {
     cartItems.forEach((item, index) => {
       const cartItemElement = document.createElement('div');
       cartItemElement.className = 'cart-item';
-      cartItemElement.innerHTML = `
-        <img src="${item.image || 'images/product-placeholder.jpg'}" alt="${item.name}" class="cart-item-img" loading="lazy">
-        <div class="cart-item-details">
-          <h4 class="cart-item-title">${item.name}</h4>
-          <p class="cart-item-price">${item.price}</p>
-          <button class="cart-item-remove" data-index="${index}">Remove</button>
-        </div>
-      `;
+      
+      // Create elements instead of using innerHTML
+      const img = document.createElement('img');
+      img.src = item.image || 'images/product-placeholder.jpg';
+      img.alt = item.name;
+      img.className = 'cart-item-img';
+      img.setAttribute('loading', 'lazy');
+      
+      const detailsDiv = document.createElement('div');
+      detailsDiv.className = 'cart-item-details';
+      
+      const title = document.createElement('h4');
+      title.className = 'cart-item-title';
+      title.textContent = item.name;
+      
+      const price = document.createElement('p');
+      price.className = 'cart-item-price';
+      price.textContent = item.price;
+      
+      const removeButton = document.createElement('button');
+      removeButton.className = 'cart-item-remove';
+      removeButton.setAttribute('data-index', index.toString());
+      removeButton.textContent = 'Remove';
+      
+      // Append elements to build the structure
+      detailsDiv.appendChild(title);
+      detailsDiv.appendChild(price);
+      detailsDiv.appendChild(removeButton);
+      
+      cartItemElement.appendChild(img);
+      cartItemElement.appendChild(detailsDiv);
       cartItemsContainer.appendChild(cartItemElement);
 
       // Extract numeric value from price (e.g., "₦1,500" => 1500)
