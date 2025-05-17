@@ -57,19 +57,19 @@ export default function Home() {
   useEffect(() => {
     const heroSlides = [
       {
-        image: "/attached_assets/broilers.jpg",
-        title: "Quality Poultry Products",
-        description: "Garkuwa Poultry Farm provides premium quality chickens, eggs, and poultry products throughout Nigeria."
+        image: "/images/manager.jpg",
+        title: "Premium Sheep & Rams",
+        description: "Garkuwa Livestock Farm provides high-quality sheep and rams for breeding and meat production."
       },
       {
-        image: "/attached_assets/farm-facility-2.jpg",
-        title: "Expert Training Programs",
-        description: "Learn modern poultry farming techniques from our team of experienced agricultural professionals."
+        image: "/images/owner.jpg",
+        title: "Quality Cattle",
+        description: "Our farm raises healthy cattle for dairy and beef production with modern breeding techniques."
       },
       {
-        image: "/attached_assets/cow.jpg",
-        title: "Diverse Livestock",
-        description: "Our farm raises a variety of livestock including poultry, cattle, and fish for sustainable farming."
+        image: "/images/live-chickens.jpg",
+        title: "Diverse Poultry",
+        description: "We offer a wide variety of poultry including layers, broilers, and turkeys for commercial farming."
       }
     ];
 
@@ -98,7 +98,7 @@ export default function Home() {
             <div 
               className="slide relative h-full bg-cover bg-center transition-all duration-500"
               style={{ 
-                backgroundImage: `url('/attached_assets/broilers.jpg')`,
+                backgroundImage: `url('/images/manager.jpg')`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover'
               }}
@@ -107,15 +107,15 @@ export default function Home() {
               <div className="container h-full flex items-center relative z-10">
                 <div className="max-w-2xl">
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fadeIn">
-                    Quality <span className="text-secondary">Poultry & Livestock</span> Farm
+                    Premium <span className="text-secondary">Livestock</span> Farm
                   </h1>
                   <p className="text-xl text-white/90 mb-8 animate-fadeIn animation-delay-200">
-                    Garkuwa Poultry Farm offers premium quality poultry products, training programs, and livestock solutions for both commercial and small-scale farmers.
+                    Garkuwa Livestock Farm offers premium sheep, rams, cattle, and poultry products with comprehensive training programs for both commercial and small-scale farmers.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 animate-fadeIn animation-delay-400">
                     <Link href="/products">
                       <Button size="lg" className="w-full sm:w-auto bg-secondary text-primary hover:bg-secondary/90">
-                        Shop Products
+                        Shop Livestock
                       </Button>
                     </Link>
                     <Link href="/contact">

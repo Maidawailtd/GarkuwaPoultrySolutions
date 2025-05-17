@@ -174,40 +174,40 @@ export const testimonials = [
 // Farm Facilities
 export const facilities = [
   {
+    name: "Sheep & Ram Housing",
+    description: "Spacious, well-ventilated housing with modern feeding systems for optimal sheep and ram growth.",
+    icon: "🐑",
+    image: "/images/manager.jpg"
+  },
+  {
+    name: "Cattle Ranch",
+    description: "Extensive grazing areas and modern cattle handling facilities for healthy beef and dairy cattle.",
+    icon: "🐄",
+    image: "/images/owner.jpg"
+  },
+  {
     name: "Modern Broiler Houses",
     description: "Climate-controlled housing with automated feeding and watering systems for optimal broiler growth conditions.",
-    icon: "🏢",
-    image: "/attached_assets/farm-facility-3.jpg"
+    icon: "🐔",
+    image: "/images/hero-farm.jpg"
   },
   {
     name: "Layer Battery Cages",
-    description: "Advanced battery cage systems designed for maximum egg production and efficient management of layer hens.",
-    icon: "🏠",
-    image: "/attached_assets/eggs3.jpg"
+    description: "Advanced cage systems designed for maximum egg production and efficient management of layer hens.",
+    icon: "🥚",
+    image: "/images/fresh-eggs.jpg"
   },
   {
-    name: "Free Range Areas",
-    description: "Specially designed paddocks allowing natural foraging behavior while maintaining biosecurity standards.",
-    icon: "🌱",
-    image: "/attached_assets/farm-facility-2.jpg"
+    name: "Aquaculture Ponds",
+    description: "State-of-the-art fish farming facilities with water quality monitoring and control systems.",
+    icon: "🐟",
+    image: "/images/fishs.jpg"
   },
   {
-    name: "Incubation Center",
-    description: "State-of-the-art incubators and hatchers for reliable and high-yield hatching operations.",
-    icon: "💧",
-    image: "/attached_assets/ducks.jpg"
-  },
-  {
-    name: "Training Classroom",
-    description: "Fully equipped learning environment with modern audiovisual technology for theoretical sessions.",
+    name: "Training Center",
+    description: "Fully equipped learning environment with modern audiovisual technology for comprehensive livestock training.",
     icon: "📚",
-    image: "/attached_assets/broilers.jpg"
-  },
-  {
-    name: "Feed Mill",
-    description: "On-site feed production facility ensuring high-quality, consistent nutrition for all livestock.",
-    icon: "🚜",
-    image: "/attached_assets/farm-facility-1.jpg"
+    image: "/images/live-chickens.jpg"
   }
 ];
 
@@ -215,50 +215,66 @@ export const facilities = [
 export const products = [
   {
     id: 1,
-    name: "Farm Fresh Eggs (Crate)",
-    description: "30 large fresh eggs from our free-range chickens",
-    price: 2500,
-    image: "/attached_assets/farm-facility-1.jpg",
-    category: "eggs"
+    name: "Premium Ram",
+    description: "Healthy, well-bred ram for breeding or meat production",
+    price: 75000,
+    image: "/images/manager.jpg",
+    category: "livestock"
   },
   {
     id: 2,
-    name: "Broiler Chicken (Live)",
-    description: "Healthy, well-fed broiler chicken weighing 2-2.5kg",
-    price: 3500,
-    image: "/attached_assets/broilers.jpg",
-    category: "meat"
+    name: "Healthy Sheep",
+    description: "Quality sheep for breeding or meat production",
+    price: 65000,
+    image: "/images/manager.jpg",
+    category: "livestock"
   },
   {
     id: 3,
-    name: "Organic Chicken Feed (25kg)",
-    description: "Premium organic feed for optimal chicken health and growth",
-    price: 7500,
-    image: "/attached_assets/eggs3.jpg",
-    category: "feed"
+    name: "Dairy Cow",
+    description: "High-yield dairy cow from premium breeding stock",
+    price: 250000,
+    image: "/images/owner.jpg",
+    category: "livestock"
   },
   {
     id: 4,
-    name: "Day-Old Chicks (10 Pack)",
-    description: "Healthy day-old broiler chicks for raising",
-    price: 5000,
-    image: "/attached_assets/farm-facility-2.jpg",
-    category: "livestock"
+    name: "Farm Fresh Eggs (Crate)",
+    description: "30 large fresh eggs from our free-range chickens",
+    price: 2500,
+    image: "/images/fresh-eggs.jpg",
+    category: "eggs"
   },
   {
     id: 5,
-    name: "Fresh Catfish (Per Kg)",
-    description: "Farm-raised catfish from our aquaculture ponds",
-    price: 1500,
-    image: "/attached_assets/fish-farming.jpg",
-    category: "fish"
+    name: "Broiler Chicken (Live)",
+    description: "Healthy, well-fed broiler chicken weighing 2-2.5kg",
+    price: 3500,
+    image: "/images/broilers.jpg",
+    category: "meat"
   },
   {
     id: 6,
-    name: "Point of Lay Pullets",
-    description: "16-18 week old layers ready to start egg production",
-    price: 4500,
-    image: "/attached_assets/ducks.jpg",
+    name: "Fresh Catfish (Per Kg)",
+    description: "Farm-raised catfish from our aquaculture ponds",
+    price: 1500,
+    image: "/images/fishs.jpg",
+    category: "fish"
+  },
+  {
+    id: 7,
+    name: "Turkey (Live)",
+    description: "Farm-raised turkey for premium meat production",
+    price: 15000,
+    image: "/images/turkeys.jpg",
     category: "livestock"
+  },
+  {
+    id: 8,
+    name: "Livestock Feed (25kg)",
+    description: "Premium balanced feed for optimal livestock health and growth",
+    price: 7500,
+    image: "/images/product-placeholder.jpg",
+    category: "feed"
   }
 ];

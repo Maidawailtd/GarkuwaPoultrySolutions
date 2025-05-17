@@ -42,10 +42,15 @@ export function MainFooter() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <Link href="/" className="flex items-center mb-4">
-                <span className="text-xl font-bold">Garkuwa Poultry Farm</span>
+                <img 
+                  src="/images/logo.png" 
+                  alt="Garkuwa Livestock Farm Logo" 
+                  className="h-10 w-auto mr-2" 
+                />
+                <span className="text-xl font-bold">Garkuwa Livestock Farm</span>
             </Link>
             <p className="text-white/80 text-sm mb-4">
-              Premier poultry and livestock farm offering quality products and comprehensive training programs in Plateau State, Nigeria.
+              Premier livestock farm offering quality sheep, rams, cattle, poultry, and comprehensive training programs in Plateau State, Nigeria.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-white/80 hover:text-secondary transition-colors" aria-label="Facebook">
@@ -161,7 +166,7 @@ export function MainFooter() {
         </div>
 
         <div className="border-t border-white/20 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-white/80">&copy; {currentYear} Garkuwa Poultry Farm. All rights reserved.</p>
+          <p className="text-sm text-white/80">&copy; {currentYear} Garkuwa Livestock Farm. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy" className="text-sm text-white/80 hover:text-secondary transition-colors">
               Privacy Policy
