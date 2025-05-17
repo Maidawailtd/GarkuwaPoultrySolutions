@@ -15,7 +15,6 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { MainLayout } from '@/components/layout/MainLayout';
 import { categories, programs, galleryItems, testimonials, facilities, products } from '@/data';
 import { Badge } from '@/components/ui/badge';
 
@@ -90,7 +89,7 @@ export default function Home() {
   }, []);
 
   return (
-    <MainLayout>
+      <>
       {/* Hero Section with Slider */}
       <section className="relative overflow-hidden bg-primary text-white">
         <div ref={sliderRef} className="hero-slider relative h-[500px] md:h-[600px]">
@@ -197,7 +196,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative">
               <img 
-                src="/attached_assets/farm-facility-2.jpg" 
+                src="/images/farm-facility-2.jpg" 
                 alt="About Garkuwa Poultry Farm" 
                 className="rounded-lg shadow-xl"
               />
@@ -209,7 +208,7 @@ export default function Home() {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">About Our Farm</h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Established in 2001, Garkuwa Poultry Farm has grown to become one of the leading poultry and livestock training centers in Plateau State, Nigeria.
+                Established in 2001, Garkuwa Livestock Farm has grown to become one of the leading livestock training centers in Plateau State, Nigeria.
               </p>
               <p className="text-lg text-muted-foreground mb-8">
                 Our mission is to empower farmers with practical knowledge and high-quality livestock to ensure sustainable and profitable farming practices.
@@ -269,7 +268,7 @@ export default function Home() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Products</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              High-quality poultry products and supplies from our farm to your table
+              High-quality livestock products and supplies from our farm to your table
             </p>
           </div>
 
@@ -564,6 +563,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </MainLayout>
+    </>
   );
 }
