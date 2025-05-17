@@ -516,7 +516,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-1">Email</h3>
-                    <p className="text-muted-foreground">info@garkuwapoultry.com</p>
+                    <p className="text-muted-foreground">abdurrazzakmusa47@gmail.com</p>
                   </div>
                 </div>
               </div>

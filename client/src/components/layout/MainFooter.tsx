@@ -151,8 +151,8 @@ export function MainFooter() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-5 w-5 text-secondary" />
-                <a href="mailto:info@garkuwapoultry.com" className="text-sm text-white/80 hover:text-secondary transition-colors">
-                  info@garkuwapoultry.com
+                <a href="mailto:abdurrazzakmusa47@gmail.com" className="text-sm text-white/80 hover:text-secondary transition-colors">
+                  abdurrazzakmusa47@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
