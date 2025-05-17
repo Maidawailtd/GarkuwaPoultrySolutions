@@ -3,127 +3,173 @@ import {
   Facebook, 
   Twitter, 
   Instagram, 
-  Linkedin, 
-  Briefcase, 
+  Youtube, 
   Mail, 
   MapPin, 
-  Phone 
+  Phone,
+  ChevronRight
 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export function MainFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-background border-t">
+    <footer className="bg-primary text-white">
       <div className="container py-12 md:py-16">
+        {/* Newsletter section */}
+        <div className="bg-secondary/20 p-6 md:p-8 rounded-lg mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 className="text-xl md:text-2xl font-bold mb-2">Subscribe to Our Newsletter</h3>
+              <p className="text-white/80">
+                Get updates on new livestock, training programs, and special offers
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <input 
+                type="email" 
+                placeholder="Your email address" 
+                className="px-4 py-3 rounded-md flex-grow bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary"
+              />
+              <Button className="bg-secondary hover:bg-secondary/90 text-primary">
+                Subscribe
+              </Button>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <Link href="/" className="flex items-center mb-4">
-                <Briefcase className="h-6 w-6 mr-2 text-primary" />
-                <span className="text-xl font-bold">MGLinkCo</span>
+                <span className="text-xl font-bold">Garkuwa Poultry Farm</span>
             </Link>
-            <p className="text-muted-foreground text-sm mb-4">
-              Connecting talent with opportunities. The premier freelancing platform for professionals worldwide.
+            <p className="text-white/80 text-sm mb-4">
+              Premier poultry and livestock farm offering quality products and comprehensive training programs in Plateau State, Nigeria.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-white/80 hover:text-secondary transition-colors" aria-label="Facebook">
                 <Facebook className="h-5 w-5" />
-                <span className="sr-only">Facebook</span>
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-white/80 hover:text-secondary transition-colors" aria-label="Twitter">
                 <Twitter className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-white/80 hover:text-secondary transition-colors" aria-label="Instagram">
                 <Instagram className="h-5 w-5" />
-                <span className="sr-only">Instagram</span>
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Linkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
+              <a href="#" className="text-white/80 hover:text-secondary transition-colors" aria-label="YouTube">
+                <Youtube className="h-5 w-5" />
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="font-medium text-base mb-4">For Clients</h3>
+            <h3 className="font-bold text-base mb-4 text-secondary">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Post a Project
+                <Link href="/about" className="text-sm text-white/80 hover:text-secondary transition-colors flex items-center">
+                  <ChevronRight className="h-4 w-4 mr-1" />
+                  About Us
                 </Link>
               </li>
               <li>
-                <Link href="/freelancers" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Find Freelancers
+                <Link href="/livestock" className="text-sm text-white/80 hover:text-secondary transition-colors flex items-center">
+                  <ChevronRight className="h-4 w-4 mr-1" />
+                  Our Livestock
                 </Link>
               </li>
               <li>
-                <Link href="/register" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Join as a Client
+                <Link href="/products" className="text-sm text-white/80 hover:text-secondary transition-colors flex items-center">
+                  <ChevronRight className="h-4 w-4 mr-1" />
+                  Farm Products
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Payment Protection
+                <Link href="/training" className="text-sm text-white/80 hover:text-secondary transition-colors flex items-center">
+                  <ChevronRight className="h-4 w-4 mr-1" />
+                  Training Programs
+                </Link>
+              </li>
+              <li>
+                <Link href="/facilities" className="text-sm text-white/80 hover:text-secondary transition-colors flex items-center">
+                  <ChevronRight className="h-4 w-4 mr-1" />
+                  Farm Facilities
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-medium text-base mb-4">For Poultry Keepers</h3>
+            <h3 className="font-bold text-base mb-4 text-secondary">Our Services</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Find Breeds
+                <Link href="/services/poultry-training" className="text-sm text-white/80 hover:text-secondary transition-colors flex items-center">
+                  <ChevronRight className="h-4 w-4 mr-1" />
+                  Poultry Training
                 </Link>
               </li>
               <li>
-                <Link href="/register" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Join as a Poultry Keeper
+                <Link href="/services/livestock-sales" className="text-sm text-white/80 hover:text-secondary transition-colors flex items-center">
+                  <ChevronRight className="h-4 w-4 mr-1" />
+                  Livestock Sales
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Build Poultry Profile
+                <Link href="/services/consultancy" className="text-sm text-white/80 hover:text-secondary transition-colors flex items-center">
+                  <ChevronRight className="h-4 w-4 mr-1" />
+                  Farm Consultancy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Manage Livestock Securely
+                <Link href="/services/feed-production" className="text-sm text-white/80 hover:text-secondary transition-colors flex items-center">
+                  <ChevronRight className="h-4 w-4 mr-1" />
+                  Feed Production
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/equipment" className="text-sm text-white/80 hover:text-secondary transition-colors flex items-center">
+                  <ChevronRight className="h-4 w-4 mr-1" />
+                  Farm Equipment
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-medium text-base mb-4">Contact Us</h3>
+            <h3 className="font-bold text-base mb-4 text-secondary">Contact Us</h3>
             <ul className="space-y-3">
-              <li className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">
-                  123 Freelance Street, Digital City
+              <li className="flex items-start gap-2">
+                <MapPin className="h-5 w-5 text-secondary mt-0.5" />
+                <span className="text-sm text-white/80">
+                  Dangi Kanam, Plateau State, Nigeria
                 </span>
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-muted-foreground" />
-                <a href="mailto:info@mglinkco.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  info@mglinkco.com
+                <Mail className="h-5 w-5 text-secondary" />
+                <a href="mailto:info@garkuwapoultry.com" className="text-sm text-white/80 hover:text-secondary transition-colors">
+                  info@garkuwapoultry.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-muted-foreground" />
-                <a href="tel:+12345678901" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  +1 (234) 567-8901
+                <Phone className="h-5 w-5 text-secondary" />
+                <a href="tel:+2348033847675" className="text-sm text-white/80 hover:text-secondary transition-colors">
+                  +234 803 384 7675
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t mt-10 pt-6 text-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear} Garkuwa Poultry Farm. All rights reserved.</p>
+        <div className="border-t border-white/20 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-white/80">&copy; {currentYear} Garkuwa Poultry Farm. All rights reserved.</p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <Link href="/privacy" className="text-sm text-white/80 hover:text-secondary transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="text-sm text-white/80 hover:text-secondary transition-colors">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
