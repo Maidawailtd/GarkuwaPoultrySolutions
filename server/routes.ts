@@ -1,9 +1,8 @@
-import type { Express, Request, Response } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { 
   insertContactSchema,
-  insertUserSchema,
   insertCategorySchema,
   insertProjectSchema,
   insertProposalSchema,
@@ -15,31 +14,26 @@ import {
   UserRole
 } from "@shared/schema";
 import { z } from "zod";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-
-// Middleware for authentication
-const authenticateToken = (req: Request, res: Response, next: Function) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-
-  if (!token) {
-    return res.status(401).json({ message: 'No token provided' });
-  }
-
-  jwt.verify(token, process.env.JWT_SECRET || 'secretkey', (err: any, user: any) => {
-    if (err) {
-      return res.status(403).json({ message: 'Invalid or expired token' });
-    }
-    
-    (req as any).user = user;
-    next();
-  });
-};
+import { setupAuth, isAuthenticated } from "./replitAuth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Set up Replit Auth
+  await setupAuth(app);
+  
+  // Auth route for getting the current user
+  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
+  
   // =====================
-  // AUTH ROUTES
+  // ORIGINAL ROUTES
   // =====================
   
   // Register new user

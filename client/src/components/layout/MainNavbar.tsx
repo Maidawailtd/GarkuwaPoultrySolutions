@@ -7,7 +7,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { Menu, User, X, ShoppingCart } from 'lucide-react';
-import { useAuthStore } from '@/lib/store';
+import { useAuth } from '@/hooks/useAuth';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -24,7 +24,7 @@ export function MainNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [location, navigate] = useLocation();
-  const { isAuthenticated, user, logout } = useAuthStore();
+  const { isAuthenticated, user, isLoading } = useAuth();
 
   // Handle scroll effect for the navbar
   useEffect(() => {
