@@ -52,7 +52,7 @@ export interface IStorage {
   // Project operations
   getProjects(limit?: number, offset?: number): Promise<Project[]>;
   getProject(id: number): Promise<Project | undefined>;
-  getProjectsByClient(clientId: number): Promise<Project[]>;
+  getProjectsByClient(clientId: string): Promise<Project[]>;
   getProjectsByCategory(categoryId: number): Promise<Project[]>;
   searchProjects(query: string, categoryId?: number, minBudget?: number, maxBudget?: number, status?: string): Promise<Project[]>;
   createProject(project: InsertProject): Promise<Project>;
@@ -62,27 +62,27 @@ export interface IStorage {
   // Proposal operations
   getProposals(projectId: number): Promise<Proposal[]>;
   getProposal(id: number): Promise<Proposal | undefined>;
-  getProposalsByFreelancer(freelancerId: number): Promise<Proposal[]>;
+  getProposalsByFreelancer(freelancerId: string): Promise<Proposal[]>;
   createProposal(proposal: InsertProposal): Promise<Proposal>;
   updateProposal(id: number, proposal: Partial<InsertProposal>): Promise<Proposal | undefined>;
   deleteProposal(id: number): Promise<boolean>;
 
   // Contract operations
-  getContracts(userId: number, role: 'client' | 'freelancer'): Promise<Contract[]>;
+  getContracts(userId: string, role: 'client' | 'freelancer'): Promise<Contract[]>;
   getContract(id: number): Promise<Contract | undefined>;
   createContract(contract: InsertContract): Promise<Contract>;
   updateContract(id: number, contract: Partial<InsertContract>): Promise<Contract | undefined>;
 
   // Review operations
-  getReviews(userId: number): Promise<Review[]>;
+  getReviews(userId: string): Promise<Review[]>;
   getReview(id: number): Promise<Review | undefined>;
   createReview(review: InsertReview): Promise<Review>;
 
   // Message operations
-  getMessages(userId1: number, userId2: number, projectId?: number): Promise<Message[]>;
+  getMessages(userId1: string, userId2: string, projectId?: number): Promise<Message[]>;
   createMessage(message: InsertMessage): Promise<Message>;
   markMessageAsRead(id: number): Promise<boolean>;
-  getUnreadMessagesCount(userId: number): Promise<number>;
+  getUnreadMessagesCount(userId: string): Promise<number>;
 
   // Skill operations
   getSkills(categoryId?: number): Promise<Skill[]>;
@@ -217,7 +217,7 @@ export class DatabaseStorage implements IStorage {
     return project;
   }
 
-  async getProjectsByClient(clientId: number): Promise<Project[]> {
+  async getProjectsByClient(clientId: string): Promise<Project[]> {
     return db
       .select()
       .from(projects)
@@ -308,7 +308,7 @@ export class DatabaseStorage implements IStorage {
     return proposal;
   }
 
-  async getProposalsByFreelancer(freelancerId: number): Promise<Proposal[]> {
+  async getProposalsByFreelancer(freelancerId: string): Promise<Proposal[]> {
     return db
       .select()
       .from(proposals)
