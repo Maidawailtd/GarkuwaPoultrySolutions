@@ -5,9 +5,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useEffect } from "react";
 import { useAuthStore } from "./lib/store";
+import { ErrorHandler } from "@/components/ui/error-handler";
 
 // Pages
-import NotFound from "@/pages/not-found";
+import NotFound from "@/pages/NotFound";
 import Home from "@/pages/Home";
 import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
@@ -189,8 +190,10 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Router />
+        <ErrorHandler>
+          <Toaster />
+          <Router />
+        </ErrorHandler>
       </TooltipProvider>
     </QueryClientProvider>
   );
