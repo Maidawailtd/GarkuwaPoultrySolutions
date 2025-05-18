@@ -1,9 +1,22 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { setupVite, serveStatic, log } from './vite';
 import { registerRoutes } from './routes';
+import compression from 'compression';
+import helmet from 'helmet';
 
 const app = express();
 const PORT = parseInt(process.env.PORT || '5000'); // Use environment variable with fallback
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Apply compression for faster response times
+app.use(compression());
+
+// Add security headers in production
+if (isProduction) {
+  app.use(helmet({
+    contentSecurityPolicy: false, // Disable CSP for now - enable later with proper config
+  }));
+}
 
 // Request logging middleware
 app.use((req: Request, _res: Response, next: NextFunction) => {
@@ -15,28 +28,51 @@ app.use((req: Request, _res: Response, next: NextFunction) => {
 // Error handling middleware
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   const status = err.status || err.statusCode || 500;
-  const message = err.message || "Internal Server Error";
+  const message = isProduction 
+    ? "Server Error, please try again later" // Generic message in production
+    : (err.message || "Internal Server Error");
   
-  console.error(err);
-  res.status(status).json({ message });
+  console.error(`Error [${status}]:`, err);
+  
+  res.status(status).json({
+    error: {
+      message,
+      status,
+      timestamp: new Date().toISOString()
+    }
+  });
 });
 
 async function startServer() {
   // Register API routes
   const server = await registerRoutes(app);
 
-  // Vite setup for development
+  // Vite setup for development, static serving for production
   if (process.env.NODE_ENV === 'development') {
     await setupVite(app, server);
   } else {
+    // In production, serve static files with cache headers
     serveStatic(app);
+    
+    // Add fallback route for SPA
+    app.get('*', (_req, res) => {
+      res.sendFile('index.html', { root: './dist/client' });
+    });
   }
 
-  // Handle port in use errors gracefully
+  // Handle server errors gracefully
   server.on('error', (e: NodeJS.ErrnoException) => {
     if (e.code === 'EADDRINUSE') {
       console.error(`Port ${PORT} is already in use`);
       process.exit(1);
+    } else {
+      console.error(`Server error: ${e.message}`);
+      if (isProduction) {
+        // In production, try to continue running if possible
+        console.error('Attempting to continue despite error...');
+      } else {
+        process.exit(1);
+      }
     }
   });
 
