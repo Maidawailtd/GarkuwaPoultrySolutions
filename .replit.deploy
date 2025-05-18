@@ -1,6 +1,6 @@
 {
   "install": {
-    "preinstall": "npm run db:push",
+    "preinstall": "npx tsx server/db-migrate.ts",
     "postinstall": "npm run build"
   },
   "run": "NODE_ENV=production node dist/index.js",
