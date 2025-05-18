@@ -29,7 +29,7 @@ export async function registerRoutes(app: express.Express): Promise<Server> {
         message: 'Garkuwa Poultry Farm API is running!',
         database: 'connected',
         timestamp,
-        environment: process.env.NODE_ENV
+        environment: process.env.NODE_ENV || 'development'
       });
     } catch (err) {
       console.error('Database connection error:', err);

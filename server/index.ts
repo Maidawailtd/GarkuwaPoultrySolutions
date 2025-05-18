@@ -4,10 +4,10 @@ import { registerRoutes } from './routes';
 import compression from 'compression';
 import helmet from 'helmet';
 import { setupProductionOptimizations } from './production';
+import { serverConfig, isProduction } from './app-config';
 
 const app = express();
-const PORT = parseInt(process.env.PORT || '5000'); // Use environment variable with fallback
-const isProduction = process.env.NODE_ENV === 'production';
+const PORT = serverConfig.port;
 
 // Apply compression for faster response times
 app.use(compression());

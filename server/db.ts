@@ -2,6 +2,7 @@ import { Pool, neonConfig } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-serverless';
 import ws from "ws";
 import * as schema from "@shared/schema";
+import { dbConfig, isProduction } from './app-config';
 
 neonConfig.webSocketConstructor = ws;
 
@@ -9,13 +10,12 @@ neonConfig.webSocketConstructor = ws;
 const databaseUrl = process.env.DATABASE_URL || 
   "postgres://postgres:postgres@localhost:5432/postgres";
 
-// Configure pool with better settings for production
-const isProduction = process.env.NODE_ENV === 'production';
+// Configure pool with optimized settings from config
 export const pool = new Pool({ 
   connectionString: databaseUrl,
-  max: isProduction ? 20 : 10, // Max connections in pool
-  idleTimeoutMillis: 30000, // How long a client is allowed to remain idle before being closed
-  connectionTimeoutMillis: 5000, // How long to wait for a connection
+  max: dbConfig.maxConnections,
+  idleTimeoutMillis: dbConfig.idleTimeoutMillis,
+  connectionTimeoutMillis: dbConfig.connectionTimeoutMillis
 });
 
 // Setup connection error handling
