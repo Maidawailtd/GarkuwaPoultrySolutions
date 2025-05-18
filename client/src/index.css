@@ -1,29 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Lora:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-      --background: 0 0% 100%;
---foreground: 20 14.3% 4.1%;
---muted: 60 4.8% 95.9%;
---muted-foreground: 25 5.3% 44.7%;
---popover: 0 0% 100%;
---popover-foreground: 20 14.3% 4.1%;
---card: 0 0% 100%;
---card-foreground: 20 14.3% 4.1%;
---border: 20 5.9% 90%;
---input: 20 5.9% 90%;
---primary: 207 90% 54%;
---primary-foreground: 211 100% 99%;
---secondary: 60 4.8% 95.9%;
---secondary-foreground: 24 9.8% 10%;
---accent: 60 4.8% 95.9%;
---accent-foreground: 24 9.8% 10%;
---destructive: 0 84.2% 60.2%;
---destructive-foreground: 60 9.1% 97.8%;
---ring: 20 14.3% 4.1%;
---radius: 0.5rem;
-  }
+  /* Garkuwa brand colors */
+  --garkuwa-green: 120 35% 27%;     /* #2D5E2E */
+  --garkuwa-green-light: 120 36% 36%; /* #3A7A3B */
+  --garkuwa-gold: 44 97% 43%;       /* #D9A604 */
+  --garkuwa-brown: 26 70% 26%;      /* #6F3413 */
+  --garkuwa-cream: 43 33% 93%;      /* #F7F2E3 */
+      
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: var(--garkuwa-green);
+  --primary-foreground: 0 0% 100%;
+  --secondary: var(--garkuwa-gold);
+  --secondary-foreground: 0 0% 100%;
+  --accent: var(--garkuwa-cream);
+  --accent-foreground: var(--garkuwa-brown);
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: var(--garkuwa-green);
+  --radius: 0.5rem;
+}
   .dark {
       --background: 240 10% 3.9%;
 --foreground: 0 0% 98%;
@@ -53,7 +62,52 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-['Montserrat'] antialiased bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-['Lora'] font-bold;
+  }
+}
+
+@layer components {
+  /* Custom navigation menu styles */
+  .nav-link {
+    @apply relative px-3 py-2 text-base font-medium transition-colors duration-200;
+  }
+  
+  .nav-link:hover {
+    @apply text-[#2D5E2E];
+  }
+  
+  .nav-link::after {
+    @apply content-[''] absolute left-0 bottom-0 w-0 h-[2px] bg-[#D9A604] transition-all duration-300 ease-in-out;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+  
+  .nav-link-active {
+    @apply text-[#2D5E2E] font-semibold;
+  }
+  
+  .nav-link-active::after {
+    @apply w-full;
+  }
+
+  /* Button styles with farm theme */
+  .btn-primary {
+    @apply bg-[#2D5E2E] text-white hover:bg-[#3A7A3B] transition-colors duration-200 rounded-md px-4 py-2 font-medium;
+  }
+  
+  .btn-secondary {
+    @apply bg-[#D9A604] text-white hover:brightness-110 transition-colors duration-200 rounded-md px-4 py-2 font-medium;
+  }
+
+  /* Card styles */
+  .farm-card {
+    @apply bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-200;
   }
 }
 
