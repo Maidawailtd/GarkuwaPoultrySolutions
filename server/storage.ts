@@ -341,7 +341,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   // Contract operations
-  async getContracts(userId: number, role: 'client' | 'freelancer'): Promise<Contract[]> {
+  async getContracts(userId: string, role: 'client' | 'freelancer'): Promise<Contract[]> {
     return db
       .select()
       .from(contracts)
@@ -376,7 +376,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   // Review operations
-  async getReviews(userId: number): Promise<Review[]> {
+  async getReviews(userId: string): Promise<Review[]> {
     return db
       .select()
       .from(reviews)
@@ -398,28 +398,27 @@ export class DatabaseStorage implements IStorage {
   }
 
   // Message operations
-  async getMessages(userId1: number, userId2: number, projectId?: number): Promise<Message[]> {
-    let queryBuilder = db
+  async getMessages(userId1: string, userId2: string, projectId?: number): Promise<Message[]> {
+    let conditions = or(
+      and(
+        eq(messages.senderId, userId1),
+        eq(messages.receiverId, userId2)
+      ),
+      and(
+        eq(messages.senderId, userId2),
+        eq(messages.receiverId, userId1)
+      )
+    );
+    
+    if (projectId) {
+      conditions = and(conditions, eq(messages.projectId, projectId));
+    }
+    
+    return db
       .select()
       .from(messages)
-      .where(
-        or(
-          and(
-            eq(messages.senderId, userId1),
-            eq(messages.receiverId, userId2)
-          ),
-          and(
-            eq(messages.senderId, userId2),
-            eq(messages.receiverId, userId1)
-          )
-        )
-      );
-
-    if (projectId) {
-      queryBuilder = queryBuilder.where(eq(messages.projectId, projectId));
-    }
-
-    return queryBuilder.orderBy(asc(messages.createdAt));
+      .where(conditions)
+      .orderBy(asc(messages.createdAt));
   }
 
   async createMessage(message: InsertMessage): Promise<Message> {
@@ -438,7 +437,7 @@ export class DatabaseStorage implements IStorage {
     return true;
   }
 
-  async getUnreadMessagesCount(userId: number): Promise<number> {
+  async getUnreadMessagesCount(userId: string): Promise<number> {
     const result = await db
       .select({ count: sql<number>`count(*)` })
       .from(messages)
@@ -453,13 +452,18 @@ export class DatabaseStorage implements IStorage {
 
   // Skill operations
   async getSkills(categoryId?: number): Promise<Skill[]> {
-    let queryBuilder = db.select().from(skills);
-    
     if (categoryId) {
-      queryBuilder = queryBuilder.where(eq(skills.categoryId, categoryId));
+      return db
+        .select()
+        .from(skills)
+        .where(eq(skills.categoryId, categoryId))
+        .orderBy(skills.name);
     }
-
-    return queryBuilder.orderBy(skills.name);
+    
+    return db
+      .select()
+      .from(skills)
+      .orderBy(skills.name);
   }
 
   async createSkill(skill: InsertSkill): Promise<Skill> {
