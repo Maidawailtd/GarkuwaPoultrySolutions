@@ -1,10 +1,11 @@
 {
   "install": {
-    "preinstall": "npm run build",
-    "postinstall": "npm run db:push"
+    "preinstall": "npm run db:push",
+    "postinstall": "npm run build"
   },
   "run": "NODE_ENV=production node dist/index.js",
   "env": {
-    "PORT": "3000"
+    "PORT": "3000",
+    "NODE_ENV": "production"
   }
 }
