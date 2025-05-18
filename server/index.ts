@@ -3,6 +3,7 @@ import { setupVite, serveStatic, log } from './vite';
 import { registerRoutes } from './routes';
 import compression from 'compression';
 import helmet from 'helmet';
+import { setupProductionOptimizations } from './production';
 
 const app = express();
 const PORT = parseInt(process.env.PORT || '5000'); // Use environment variable with fallback
@@ -16,6 +17,9 @@ if (isProduction) {
   app.use(helmet({
     contentSecurityPolicy: false, // Disable CSP for now - enable later with proper config
   }));
+  
+  // Apply additional production optimizations
+  setupProductionOptimizations(app);
 }
 
 // Request logging middleware
