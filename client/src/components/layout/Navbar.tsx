@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoImage from "@assets/logo.png";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,9 +19,16 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-white shadow-md">
       <nav className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center">
-          <Link href="/" className="flex items-center">
-            <span className="text-[#2D5E2E] font-bold text-2xl sm:text-3xl">Garkuwa</span>
-            <span className="ml-2 text-[#D9A604] font-bold text-2xl sm:text-3xl">Farm</span>
+          <Link href="/" className="flex flex-col sm:flex-row items-center">
+            <img 
+              src={logoImage}
+              alt="Garkuwa Poultry Farm Logo" 
+              className="h-16 sm:h-20 md:h-24 w-auto mr-3"
+            />
+            <div className="flex flex-col mt-2 sm:mt-0">
+              <span className="text-[#2D5E2E] font-bold text-3xl sm:text-4xl md:text-5xl tracking-tight text-center sm:text-left">Garkuwa</span>
+              <span className="text-[#6F3413] font-medium text-xl sm:text-2xl md:text-3xl tracking-tight text-center sm:text-left">Poultry Farm</span>
+            </div>
           </Link>
         </div>
         
