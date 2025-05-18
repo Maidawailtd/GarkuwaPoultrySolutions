@@ -1,0 +1,7 @@
+{
+  "install": {
+    "preinstall": "npm run build",
+    "postinstall": "npm run db:push"
+  },
+  "run": "NODE_ENV=production npm start"
+}
