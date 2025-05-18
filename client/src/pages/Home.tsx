@@ -1,193 +1,568 @@
 import { Link } from 'wouter';
+import { useEffect, useState, useRef } from 'react';
+import { 
+  Leaf, 
+  Calendar, 
+  Users, 
+  Award, 
+  MapPin, 
+  ChevronRight,
+  Phone,
+  Mail,
+  Clock,
+  ArrowRight,
+  ShoppingCart
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { categories, programs, galleryItems, testimonials, facilities, products } from '@/data';
+import { Badge } from '@/components/ui/badge';
 
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const slideInterval = useRef<NodeJS.Timeout | null>(null);
+  const featuredProducts = products.slice(0, 4);
+
+  // Function to handle cart items
+  const addToCart = (productId: number, productName: string, productPrice: number, productImage: string) => {
+    let cart = [];
+    const storedCart = localStorage.getItem('garkuwaCart');
+    
+    if (storedCart) {
+      try {
+        cart = JSON.parse(storedCart);
+      } catch (e) {
+        console.error('Error parsing cart data:', e);
+        cart = [];
+      }
+    }
+
+    cart.push({
+      id: productId,
+      name: productName,
+      price: productPrice,
+      image: productImage,
+      quantity: 1
+    });
+
+    localStorage.setItem('garkuwaCart', JSON.stringify(cart));
+    
+    // Show notification
+    alert(`${productName} added to cart!`);
+  };
+
+  // Hero slider functionality
+  useEffect(() => {
+    const heroSlides = [
+      {
+        image: "/images/manager.jpg",
+        title: "Premium Sheep & Rams",
+        description: "Garkuwa Livestock Farm provides high-quality sheep and rams for breeding and meat production."
+      },
+      {
+        image: "/images/owner.jpg",
+        title: "Quality Cattle",
+        description: "Our farm raises healthy cattle for dairy and beef production with modern breeding techniques."
+      },
+      {
+        image: "/images/live-chickens.jpg",
+        title: "Diverse Poultry",
+        description: "We offer a wide variety of poultry including layers, broilers, and turkeys for commercial farming."
+      }
+    ];
+
+    const startSlideShow = () => {
+      slideInterval.current = setInterval(() => {
+        setCurrentSlide(prev => (prev + 1) % heroSlides.length);
+      }, 5000);
+    };
+
+    startSlideShow();
+
+    // Clean up interval on component unmount
+    return () => {
+      if (slideInterval.current) {
+        clearInterval(slideInterval.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className="bg-[#FEF9E9]">
-      {/* Header matching the reference image */}
-      <header className="bg-[#FFCC45] py-3">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <img 
-                src="/assets/logo.png" 
-                alt="Garkuwa Poultry Farm Logo" 
-                className="h-14 w-auto"
-              />
-              <div className="flex flex-col">
-                <span className="text-[#5D4037] font-bold text-2xl tracking-tight">GARKUWA</span>
-                <span className="text-[#5D4037] text-sm font-medium tracking-wide">POULTRY FARM</span>
+      <>
+      {/* Hero Section with Slider */}
+      <section className="relative overflow-hidden bg-primary text-white">
+        <div ref={sliderRef} className="hero-slider relative h-[500px] md:h-[600px]">
+          <div className="slide-container h-full relative">
+            <div 
+              className="slide relative h-full bg-cover bg-center transition-all duration-500"
+              style={{ 
+                backgroundImage: `url('/images/manager.jpg')`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover'
+              }}
+            >
+              <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+              <div className="container h-full flex items-center relative z-10">
+                <div className="max-w-2xl">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fadeIn">
+                    Premium <span className="text-secondary">Livestock</span> Farm
+                  </h1>
+                  <p className="text-xl text-white/90 mb-8 animate-fadeIn animation-delay-200">
+                    Garkuwa Livestock Farm offers premium sheep, rams, cattle, and poultry products with comprehensive training programs for both commercial and small-scale farmers.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 animate-fadeIn animation-delay-400">
+                    <Link href="/products">
+                      <Button size="lg" className="w-full sm:w-auto bg-secondary text-primary hover:bg-secondary/90">
+                        Shop Livestock
+                      </Button>
+                    </Link>
+                    <Link href="/contact">
+                      <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-primary">
+                        Contact Us
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
               </div>
-            </Link>
-            
-            <nav className="hidden md:flex space-x-6">
-              <Link href="/" className="text-[#5D4037] hover:text-[#3E2723] font-medium">Home</Link>
-              <Link href="/about" className="text-[#5D4037] hover:text-[#3E2723] font-medium">About Us</Link>
-              <Link href="/services" className="text-[#5D4037] hover:text-[#3E2723] font-medium">Services</Link>
-              <Link href="/gallery" className="text-[#5D4037] hover:text-[#3E2723] font-medium">Gallery</Link>
-              <Link href="/contact" className="text-[#5D4037] hover:text-[#3E2723] font-medium">Contact</Link>
-            </nav>
+            </div>
+          </div>
+          
+          {/* Slide indicators */}
+          <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
+            <button 
+              className={`w-3 h-3 rounded-full ${currentSlide === 0 ? 'bg-secondary' : 'bg-white/50'}`} 
+              onClick={() => setCurrentSlide(0)}
+              aria-label="Go to slide 1"
+            ></button>
+            <button 
+              className={`w-3 h-3 rounded-full ${currentSlide === 1 ? 'bg-secondary' : 'bg-white/50'}`} 
+              onClick={() => setCurrentSlide(1)}
+              aria-label="Go to slide 2"
+            ></button>
+            <button 
+              className={`w-3 h-3 rounded-full ${currentSlide === 2 ? 'bg-secondary' : 'bg-white/50'}`} 
+              onClick={() => setCurrentSlide(2)}
+              aria-label="Go to slide 3"
+            ></button>
           </div>
         </div>
-      </header>
-      
-      {/* Hero Section using the image directly */}
-      <div className="relative bg-cover bg-center" style={{ backgroundImage: 'url("/assets/theme-poultry-farm-1.jpg")' }}>
-        <div className="container mx-auto px-4 py-16">
-          <div className="max-w-md">
-            <h1 className="text-4xl font-bold text-[#5D4037] mb-2">
-              Welcome to<br />
-              Garkuwa Poultry Farm
-            </h1>
-            <p className="text-xl text-[#5D4037]">
-              Your trusted source for quality poultry products.
+      </section>
+
+      {/* Featured Categories */}
+      <section className="py-16 bg-white">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Livestock Categories</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              We raise and provide training for a variety of livestock species to ensure sustainable farming
             </p>
           </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {categories.slice(0, 4).map((category, index) => (
+              <Link key={index} href={`/livestock/${category.slug}`}>
+                <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1">
+                  <div className="h-52 overflow-hidden">
+                    <img 
+                      src={category.image} 
+                      alt={category.name} 
+                      className="w-full h-full object-cover transition-transform hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="text-lg font-bold mb-2 text-primary">{category.name}</h3>
+                    <p className="text-sm text-muted-foreground">{category.description}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link href="/livestock">
+              <Button variant="outline" className="gap-2 border-primary text-primary hover:bg-primary hover:text-white">
+                View All Categories
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
         </div>
-      </div>
-      
-      {/* About Us Section */}
-      <section className="py-8">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      </section>
+
+      {/* About Section with Feature Boxes */}
+      <section className="py-16 bg-gray-50">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <img 
+                src="/images/farm-facility-2.jpg" 
+                alt="About Garkuwa Poultry Farm" 
+                className="rounded-lg shadow-xl"
+              />
+              <div className="absolute -bottom-6 -right-6 bg-primary text-white p-4 rounded-lg shadow-lg md:w-48 w-36 text-center">
+                <p className="font-bold text-xl md:text-2xl">20+ Years</p>
+                <p className="text-white/80 text-sm md:text-base">of Excellence</p>
+              </div>
+            </div>
             <div>
-              <h2 className="text-3xl font-bold text-[#5D4037] mb-4">About Us</h2>
-              <p className="text-lg text-[#5D4037]">
-                Garkuwa Poultry Farm has been serving the community with fresh, top-quality poultry for over 25 years.
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">About Our Farm</h2>
+              <p className="text-lg text-muted-foreground mb-6">
+                Established in 2001, Garkuwa Livestock Farm has grown to become one of the leading livestock training centers in Plateau State, Nigeria.
+              </p>
+              <p className="text-lg text-muted-foreground mb-8">
+                Our mission is to empower farmers with practical knowledge and high-quality livestock to ensure sustainable and profitable farming practices.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 bg-primary/10 p-2 rounded-full">
+                    <Leaf className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold">Sustainable Practices</h3>
+                    <p className="text-muted-foreground">Environmentally friendly farming methods</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 bg-primary/10 p-2 rounded-full">
+                    <Award className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold">Certified Training</h3>
+                    <p className="text-muted-foreground">Professional certification programs</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 bg-primary/10 p-2 rounded-full">
+                    <Users className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold">Expert Staff</h3>
+                    <p className="text-muted-foreground">Experienced agricultural professionals</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="mt-1 bg-primary/10 p-2 rounded-full">
+                    <Calendar className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold">Regular Workshops</h3>
+                    <p className="text-muted-foreground">Ongoing educational events</p>
+                  </div>
+                </div>
+              </div>
+              <Link href="/about">
+                <Button variant="outline" className="gap-2 border-primary text-primary hover:bg-primary hover:text-white">
+                  Learn More About Us
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="py-16 bg-white">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Products</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              High-quality livestock products and supplies from our farm to your table
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredProducts.map((product, index) => (
+              <div key={index} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className="w-full h-full object-cover transition-transform hover:scale-105"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-bold mb-2 text-primary">{product.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-bold text-primary">₦{product.price}</span>
+                    <Button 
+                      onClick={() => addToCart(product.id, product.name, product.price, product.image)}
+                      size="sm" 
+                      className="bg-secondary text-primary hover:bg-secondary/90"
+                    >
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      Add to Cart
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link href="/products">
+              <Button variant="outline" className="gap-2 border-primary text-primary hover:bg-primary hover:text-white">
+                View All Products
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Training Programs with Card Design */}
+      <section className="py-16 bg-gray-50">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Training Programs</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Comprehensive training for both beginners and experienced farmers
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {programs.map((program, index) => (
+              <Card key={index} className="border-none shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-0">
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src={program.image} 
+                      alt={program.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3 text-sm">
+                      <Calendar className="h-4 w-4 text-primary" />
+                      <span>{program.duration}</span>
+                      <div className="w-1 h-1 rounded-full bg-muted-foreground/50"></div>
+                      <Clock className="h-4 w-4 text-primary" />
+                      <span>{program.schedule}</span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">{program.title}</h3>
+                    <p className="text-muted-foreground mb-4">{program.description}</p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-lg font-bold text-primary">{program.price}</span>
+                      <Link href={`/programs/${program.id}`}>
+                        <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-white">
+                          View Details
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/programs">
+              <Button className="bg-primary hover:bg-primary/90">View All Programs</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Farm Facilities with Image Cards */}
+      <section className="py-16 bg-white">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Facilities</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              State-of-the-art farm infrastructure for optimal livestock management
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {facilities.map((facility, index) => (
+              <div key={index} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src={facility.image} 
+                    alt={facility.name} 
+                    className="w-full h-full object-cover transition-transform hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="mb-4 text-primary text-4xl">
+                    {facility.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{facility.name}</h3>
+                  <p className="text-muted-foreground">{facility.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Grid */}
+      <section className="py-16 bg-gray-50">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Livestock Gallery</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Take a look at some of our healthy livestock and farm activities
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {galleryItems.map((item, index) => (
+              <div 
+                key={index} 
+                className="relative overflow-hidden rounded-lg aspect-square group cursor-pointer"
+              >
+                <img 
+                  src={item.image} 
+                  alt={item.caption} 
+                  className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <p className="text-white text-sm md:text-base font-medium">{item.caption}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/gallery">
+              <Button className="bg-primary hover:bg-primary/90">View Full Gallery</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials with Cards */}
+      <section className="py-16 bg-white">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Customers Say</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Read about the experiences of farmers who have worked with our farm
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="border-none shadow-md hover:shadow-lg transition-all duration-300">
+                <CardContent className="pt-6">
+                  <div className="flex items-center mb-4">
+                    <img 
+                      src={testimonial.avatar} 
+                      alt={testimonial.name} 
+                      className="w-12 h-12 rounded-full mr-4 object-cover" 
+                    />
+                    <div>
+                      <h4 className="font-bold">{testimonial.name}</h4>
+                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground mb-4">"{testimonial.quote}"</p>
+                  <div className="flex text-yellow-500">
+                    {Array(5).fill(0).map((_, i) => (
+                      <svg 
+                        key={i} 
+                        className={`w-5 h-5 ${i < testimonial.rating ? 'fill-yellow-500' : 'fill-gray-300'}`}
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                      </svg>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section with Map */}
+      <section className="py-16 bg-gray-50">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Visit Our Farm</h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                Come see our facilities in person and learn more about our training programs and livestock
+              </p>
+              
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="bg-primary/10 p-3 rounded-full">
+                    <MapPin className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-1">Farm Location</h3>
+                    <p className="text-muted-foreground">Dangi Kanam, Plateau State, Nigeria</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="bg-primary/10 p-3 rounded-full">
+                    <Phone className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-1">Phone</h3>
+                    <p className="text-muted-foreground">+234 803 384 7675</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="bg-primary/10 p-3 rounded-full">
+                    <Mail className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-1">Email</h3>
+                    <p className="text-muted-foreground">abdurrazzakmusa47@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="h-[400px] rounded-lg overflow-hidden shadow-lg">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15819.224098994663!2d9.498991851931153!3d8.865766399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1053729acb3c0913%3A0x7acc0f9e857b2494!2sPlateau%20State!5e0!3m2!1sen!2sng!4v1651545462584!5m2!1sen!2sng" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen={true} 
+                loading="lazy" 
+                aria-hidden="false" 
+                title="Farm Location Map"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-primary text-white">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Farming Journey?</h2>
+              <p className="text-white/90 text-lg mb-6">
+                Join our next training program or visit our farm to purchase quality livestock and learn from our experts.
               </p>
             </div>
-            
-            <div>
-              <h2 className="text-3xl font-bold text-[#5D4037] mb-4">Our Services</h2>
-              <ul className="space-y-2">
-                <li className="flex items-center">
-                  <span className="mr-2">🥚</span>
-                  <span className="text-lg">Egg Production</span>
-                </li>
-                <li className="flex items-center">
-                  <span className="mr-2">🐔</span>
-                  <span className="text-lg">Chicken Broiler Sales</span>
-                </li>
-                <li className="flex items-center">
-                  <span className="mr-2">📋</span>
-                  <span className="text-lg">Consulting for Poultry Farming</span>
-                </li>
-              </ul>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
+              <Link href="/programs">
+                <Button variant="secondary" size="lg" className="w-full sm:w-auto bg-secondary text-primary hover:bg-secondary/90">
+                  Enroll in Training
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button variant="outline" size="lg" className="w-full sm:w-auto text-white border-white hover:bg-white hover:text-primary">
+                  Contact Us
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
-      
-      {/* Gallery Section */}
-      <section className="py-8">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-[#5D4037] mb-6">Gallery</h2>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <div>
-              <img 
-                src="https://images.unsplash.com/photo-1548550019-43f6166e8713?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=400&q=80" 
-                alt="Chickens at Garkuwa Farm" 
-                className="h-40 w-full object-cover"
-              />
-            </div>
-            <div>
-              <img 
-                src="https://images.unsplash.com/photo-1563775207-7d858cba1e20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=400&q=80" 
-                alt="Ducks at Garkuwa Farm" 
-                className="h-40 w-full object-cover"
-              />
-            </div>
-            <div>
-              <img 
-                src="https://images.unsplash.com/photo-1573399054516-90665ecc7ed7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=400&q=80" 
-                alt="Turkeys at Garkuwa Farm" 
-                className="h-40 w-full object-cover"
-              />
-            </div>
-            <div>
-              <img 
-                src="https://images.unsplash.com/photo-1569127959161-2b1297b2d9a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=400&q=80" 
-                alt="Fresh eggs from Garkuwa Farm" 
-                className="h-40 w-full object-cover"
-              />
-            </div>
-            <div>
-              <img 
-                src="https://images.unsplash.com/photo-1586350977771-b3dd0b48d8a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=400&q=80" 
-                alt="Baby chicks at Garkuwa Farm" 
-                className="h-40 w-full object-cover"
-              />
-            </div>
-            <div>
-              <img 
-                src="https://maps.googleapis.com/maps/api/staticmap?center=9.1,7.4&zoom=12&size=500x400&markers=color:red%7C9.1,7.4&key=YOUR_API_KEY" 
-                alt="Garkuwa Farm location" 
-                className="h-40 w-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Contact Section */}
-      <section className="py-8">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <div className="flex items-center mb-3">
-                <span className="inline-block bg-green-600 rounded-full p-1 mr-2">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.6 6.31999C16.8 5.54999 15.8 4.94999 14.7 4.57999C13.6 4.19999 12.5 4.09999 11.3 4.19999C10.1 4.29999 9.00001 4.69999 8.00001 5.19999C7.00001 5.69999 6.20001 6.39999 5.50001 7.19999C4.10001 8.99999 3.40001 11.2 3.50001 13.5C3.50001 13.8 3.60001 14.1 3.60001 14.3L3.70001 14.6C3.70001 14.7 3.70001 14.8 3.80001 14.9C3.80001 15 3.90001 15 3.90001 15.1C4.00001 15.3 4.10001 15.6 4.20001 15.8C4.30001 16 4.40001 16.2 4.60001 16.3C4.80001 16.5 4.90001 16.7 5.10001 16.8C5.30001 17 5.60001 17 5.80001 17C6.00001 17 6.30001 16.9 6.40001 16.8C6.80001 16.6 7.10001 16.2 7.20001 15.8C7.30001 15.4 7.30001 15 7.10001 14.7C7.00001 14.5 6.80001 14.3 6.60001 14.1C6.40001 13.9 6.10001 13.8 5.80001 13.8C5.70001 13.8 5.60001 13.8 5.50001 13.8C5.40001 13.8 5.30001 13.9 5.20001 13.9C5.20001 12.4 5.70001 10.9 6.80001 9.79999C7.30001 9.19999 8.00001 8.79999 8.70001 8.49999C9.40001 8.19999 10.2 7.99999 11 7.99999C11.8 7.89999 12.7 7.99999 13.5 8.19999C14.3 8.39999 15.1 8.79999 15.8 9.19999C17.1 10.1 18.1 11.5 18.5 13C18.9 14.5 18.7 16.2 18 17.6C17.3 19 16.1 20.1 14.7 20.7C13.3 21.3 11.7 21.3 10.3 20.9C9.90001 20.8 9.40001 20.6 9.00001 20.3C8.60001 20 8.20001 19.7 7.80001 19.3C7.40001 18.9 7.10001 18.4 6.80001 17.9C6.50001 17.4 6.30001 16.9 6.10001 16.3C6.00001 16 5.80001 15.6 5.50001 15.4C5.20001 15.2 4.80001 15.2 4.50001 15.3C4.20001 15.4 3.90001 15.7 3.80001 16C3.70001 16.3 3.70001 16.7 3.80001 17C3.90001 17.5 4.10001 18 4.30001 18.5C4.50001 19 4.80001 19.5 5.10001 19.9C5.40001 20.3 5.80001 20.7 6.20001 21.1C6.60001 21.5 7.10001 21.8 7.60001 22.1C8.80001 22.9 10.2 23.3 11.6 23.4C12.9 23.5 14.3 23.3 15.6 22.8C16.9 22.3 18.1 21.5 19 20.4C19.9 19.3 20.6 18 21 16.6C21.4 15.2 21.4 13.7 21.2 12.3C21 10.9 20.4 9.49999 19.5 8.39999C19.1 7.99999 18.7 7.59999 18.2 7.19999C18 7.09999 17.8 6.99999 17.6 6.89999V6.31999Z" fill="white"/>
-                  </svg>
-                </span>
-                <span>Wabsapp: 05033847755</span>
-              </div>
-              
-              <div className="flex items-center mb-3">
-                <span className="mr-2">📞</span>
-                <span>05033847755</span>
-              </div>
-              
-              <div className="flex items-center mb-6">
-                <span className="mr-2">✉️</span>
-                <span>abdurazzakmusa47@gmail.com</span>
-              </div>
-
-              <Button className="bg-[#FFCC45] hover:bg-[#FFA000] font-medium px-8 py-2 text-[#5D4037] rounded">
-                Send
-              </Button>
-            </div>
-            
-            <div>
-              <h2 className="text-3xl font-bold text-[#5D4037] mb-4">Our Location</h2>
-              <form className="space-y-3">
-                <div>
-                  <input 
-                    type="text" 
-                    placeholder="Your Name" 
-                    className="w-full p-2 border border-gray-300"
-                  />
-                </div>
-                <div>
-                  <input 
-                    type="email" 
-                    placeholder="Your Email" 
-                    className="w-full p-2 border border-gray-300"
-                  />
-                </div>
-                <div>
-                  <textarea 
-                    placeholder="Your Message" 
-                    rows={3}
-                    className="w-full p-2 border border-gray-300"
-                  ></textarea>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    </>
   );
 }
