@@ -240,34 +240,33 @@ export class DatabaseStorage implements IStorage {
     maxBudget?: number, 
     status?: string
   ): Promise<Project[]> {
-    let queryBuilder = db
-      .select()
-      .from(projects)
-      .where(
-        or(
-          like(projects.title, `%${query}%`),
-          like(projects.description, `%${query}%`),
-          like(projects.requirements, `%${query}%`)
-        )
-      );
+    let conditions = or(
+      like(projects.title, `%${query}%`),
+      like(projects.description, `%${query}%`),
+      like(projects.requirements, `%${query}%`)
+    );
 
     if (categoryId) {
-      queryBuilder = queryBuilder.where(eq(projects.categoryId, categoryId));
+      conditions = and(conditions, eq(projects.categoryId, categoryId));
     }
 
     if (minBudget) {
-      queryBuilder = queryBuilder.where(gte(projects.budget, minBudget));
+      conditions = and(conditions, gte(projects.budget, minBudget));
     }
 
     if (maxBudget) {
-      queryBuilder = queryBuilder.where(lte(projects.budget, maxBudget));
+      conditions = and(conditions, lte(projects.budget, maxBudget));
     }
 
     if (status) {
-      queryBuilder = queryBuilder.where(eq(projects.status, status));
+      conditions = and(conditions, eq(projects.status, status));
     }
 
-    return queryBuilder.orderBy(desc(projects.createdAt));
+    return db
+      .select()
+      .from(projects)
+      .where(conditions)
+      .orderBy(desc(projects.createdAt));
   }
 
   async createProject(project: InsertProject): Promise<Project> {
