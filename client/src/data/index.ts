@@ -9,10 +9,10 @@ export const categories = [
     image: "/images/manager.jpg"
   },
   {
-    name: "Cattle",
-    slug: "cattle",
-    description: "Healthy dairy and beef cattle for high yields",
-    image: "/images/cattles.jpg"
+    name: "Ducks & Geese",
+    slug: "ducks-geese",
+    description: "Premium waterfowl varieties for meat and egg production",
+    image: "/images/ducks.jpg"
   },
   {
     name: "Broiler Chickens",
@@ -83,12 +83,12 @@ export const programs = [
   },
   {
     id: 4,
-    title: "Cattle Rearing & Management",
-    description: "Comprehensive training on raising healthy cattle for meat and dairy",
+    title: "Duck & Goose Farming",
+    description: "Comprehensive training on raising waterfowl for eggs and meat",
     duration: "6 weeks",
     schedule: "Weekdays",
     price: "₦75,000",
-    image: "/images/owner.jpg"
+    image: "/images/ducks.jpg"
   },
   {
     id: 5,
@@ -118,7 +118,7 @@ export const galleryItems = [
   },
   {
     image: "/images/owner.jpg",
-    caption: "Healthy cattle raised with premium care"
+    caption: "Assorted farm birds for diverse poultry operations"
   },
   {
     image: "/images/broilers.jpg",
@@ -180,10 +180,10 @@ export const facilities = [
     image: "/images/manager.jpg"
   },
   {
-    name: "Cattle Ranch",
-    description: "Extensive grazing areas and modern cattle handling facilities for healthy beef and dairy cattle.",
-    icon: "🐄",
-    image: "/images/owner.jpg"
+    name: "Waterfowl Area",
+    description: "Specially designed spaces with ponds and shelter for ducks, geese and other waterfowl species.",
+    icon: "🦆",
+    image: "/images/ducks.jpg"
   },
   {
     name: "Modern Broiler Houses",
@@ -231,10 +231,10 @@ export const products = [
   },
   {
     id: 3,
-    name: "Dairy Cow",
-    description: "High-yield dairy cow from premium breeding stock",
-    price: 250000,
-    image: "/images/owner.jpg",
+    name: "Premium Duck Pair",
+    description: "Healthy breeding pair of high-quality ducks",
+    price: 12000,
+    image: "/images/ducks.jpg",
     category: "livestock"
   },
   {
