@@ -164,9 +164,9 @@ export const testimonials = [
   },
   {
     name: "Fatima Ibrahim",
-    role: "Cattle Rancher",
+    role: "Duck & Goose Farmer",
     avatar: "/images/customer-1.jpg",
-    quote: "The cattle management program at Garkuwa gave me practical skills that I immediately applied to my ranch. My cattle are healthier and more productive than ever before.",
+    quote: "The waterfowl farming program at Garkuwa gave me practical skills that I immediately applied to my farm. My ducks and geese are healthier and more productive than ever before.",
     rating: 4
   }
 ];
