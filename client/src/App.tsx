@@ -34,10 +34,12 @@ function Router() {
   const [location] = useLocation();
   const { isAuthenticated, user } = useAuthStore();
 
-  // For development/debugging purposes
+  // Only log in development mode
   useEffect(() => {
-    console.log(`Route changed: ${location}`);
-    console.log(`Auth state:`, { isAuthenticated, user });
+    if (import.meta.env.DEV) {
+      console.log(`Route changed: ${location}`);
+      console.log(`Auth state:`, { isAuthenticated, user });
+    }
   }, [location, isAuthenticated, user]);
 
   return (
