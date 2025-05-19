@@ -58,9 +58,20 @@ async function startServer() {
     // In production, serve static files with cache headers
     serveStatic(app);
     
-    // Add fallback route for SPA
+    // Add fallback route for SPA after all other routes
     app.get('*', (_req, res) => {
-      res.sendFile('index.html', { root: './dist/client' });
+      // Use absolute path to ensure we can find the file
+      const indexPath = './dist/client/index.html';
+      console.log(`Serving SPA fallback from: ${indexPath}`);
+      res.sendFile('index.html', { 
+        root: './dist/client',
+        // Set proper cache headers for index.html
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      });
     });
   }
 

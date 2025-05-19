@@ -14,7 +14,13 @@ export function setupProductionOptimizations(app: Express) {
   app.use((req: Request, res: Response, next: NextFunction) => {
     // Only apply caching to static assets
     if (req.path.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
-      res.setHeader('Cache-Control', 'public, max-age=86400'); // 1 day
+      // 1 day for most assets
+      res.setHeader('Cache-Control', 'public, max-age=86400');
+    } else if (req.path.includes('/api/')) {
+      // No caching for API responses
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
     }
     next();
   });
