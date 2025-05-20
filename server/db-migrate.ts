@@ -61,6 +61,53 @@ async function runMigration() {
     `);
     console.log("✅ Categories table created");
     
+    // Create projects table
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS projects (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        description TEXT NOT NULL,
+        budget DOUBLE PRECISION,
+        deadline TIMESTAMP,
+        client_id VARCHAR NOT NULL REFERENCES users(id),
+        category_id INTEGER REFERENCES categories(id),
+        status TEXT NOT NULL DEFAULT 'open',
+        created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        requirements TEXT,
+        attachments TEXT[]
+      );
+    `);
+    console.log("✅ Projects table created");
+    
+    // Create proposals table
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS proposals (
+        id SERIAL PRIMARY KEY,
+        project_id INTEGER NOT NULL REFERENCES projects(id),
+        freelancer_id VARCHAR NOT NULL REFERENCES users(id),
+        cover_letter TEXT NOT NULL,
+        bid_amount DOUBLE PRECISION NOT NULL,
+        estimated_duration INTEGER,
+        status TEXT NOT NULL DEFAULT 'pending',
+        created_at TIMESTAMP NOT NULL DEFAULT NOW()
+      );
+    `);
+    console.log("✅ Proposals table created");
+    
+    // Create contact submissions table
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS contact_submissions (
+        id SERIAL PRIMARY KEY,
+        full_name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        phone TEXT NOT NULL,
+        subject TEXT,
+        message TEXT NOT NULL,
+        created_at TIMESTAMP NOT NULL DEFAULT NOW()
+      );
+    `);
+    console.log("✅ Contact submissions table created");
+    
     console.log("Migration completed successfully!");
   } catch (error) {
     console.error("Migration failed:", error);
