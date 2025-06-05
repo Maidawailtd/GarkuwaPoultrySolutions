@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy Garkuwa Poultry Farm - Free Hosting</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .step { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .command { background: #000; color: #00ff00; padding: 10px; border-radius: 3px; font-family: monospace; }
+        .option { border: 2px solid #0066cc; padding: 15px; margin: 10px 0; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>Free Deployment Options for Garkuwa Poultry Farm</h1>
+    
+    <div class="option">
+        <h2>Option 1: Netlify (Recommended)</h2>
+        <div class="step">
+            <h3>Step 1: Build your site</h3>
+            <div class="command">npm run build</div>
+        </div>
+        <div class="step">
+            <h3>Step 2: Deploy</h3>
+            <p>1. Go to <a href="https://netlify.com" target="_blank">netlify.com</a></p>
+            <p>2. Drag and drop your <strong>dist/client</strong> folder</p>
+            <p>3. Get instant free hosting with SSL</p>
+        </div>
+    </div>
+
+    <div class="option">
+        <h2>Option 2: Vercel</h2>
+        <div class="step">
+            <div class="command">npm install -g vercel<br>vercel login<br>vercel --prod</div>
+        </div>
+    </div>
+
+    <div class="option">
+        <h2>Option 3: Surge.sh</h2>
+        <div class="step">
+            <div class="command">npm install -g surge<br>npm run build<br>cd dist/client<br>surge</div>
+        </div>
+    </div>
+
+    <div class="option">
+        <h2>Option 4: GitHub Pages</h2>
+        <div class="step">
+            <p>1. Push your code to GitHub</p>
+            <p>2. Enable Pages in repository settings</p>
+            <p>3. Select source as GitHub Actions</p>
+        </div>
+    </div>
+
+    <h2>Shell Commands for Quick Deployment:</h2>
+    <div class="command">
+# Build the project<br>
+npm run build<br><br>
+
+# Option A: Use Netlify CLI<br>
+npm install -g netlify-cli<br>
+netlify deploy --prod --dir=dist/client<br><br>
+
+# Option B: Use Surge<br>
+npm install -g surge<br>
+cd dist/client && surge<br><br>
+
+# Option C: Use Vercel<br>
+npm install -g vercel<br>
+vercel --prod
+    </div>
+</body>
+</html>
