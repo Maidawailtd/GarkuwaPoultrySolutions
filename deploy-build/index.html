@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garkuwa Poultry Farm - Modern Livestock Training & Agricultural Services</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: #2c5a3a; color: white; padding: 1rem 0; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        nav ul { display: flex; list-style: none; gap: 2rem; }
+        nav a { color: white; text-decoration: none; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero-farm.jpg'); 
+                background-size: cover; color: white; text-align: center; padding: 4rem 0; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+        .btn { background: #4a7c59; color: white; padding: 12px 24px; text-decoration: none; 
+               border-radius: 5px; display: inline-block; }
+        .services { padding: 4rem 0; background: #f8f9fa; }
+        .services h2 { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; }
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .service-card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .service-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; margin-bottom: 1rem; }
+        .products { padding: 4rem 0; }
+        .products h2 { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .product-card { background: white; border: 1px solid #ddd; border-radius: 10px; overflow: hidden; }
+        .product-card img { width: 100%; height: 200px; object-fit: cover; }
+        .product-info { padding: 1rem; }
+        .contact { background: #2c5a3a; color: white; padding: 4rem 0; text-align: center; }
+        .contact h2 { margin-bottom: 2rem; }
+        .contact-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        footer { background: #1a3a26; color: white; text-align: center; padding: 2rem 0; }
+        .whatsapp { position: fixed; bottom: 20px; right: 20px; }
+        .whatsapp img { width: 60px; height: 60px; border-radius: 50%; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Garkuwa Poultry Farm</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Modern Livestock Training & Agricultural Services</h1>
+            <p>Professional poultry farming, livestock training, and agricultural consulting in Nigeria</p>
+            <a href="#contact" class="btn">Get Started Today</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <img src="images/manager.jpg" alt="Farm Management">
+                    <h3>Farm Management Training</h3>
+                    <p>Comprehensive training programs for modern poultry farm management techniques.</p>
+                </div>
+                <div class="service-card">
+                    <img src="images/farm-facility-2.jpg" alt="Livestock Training">
+                    <h3>Livestock Training</h3>
+                    <p>Professional livestock management and breeding programs for optimal productivity.</p>
+                </div>
+                <div class="service-card">
+                    <img src="images/owner.jpg" alt="Agricultural Consulting">
+                    <h3>Agricultural Consulting</h3>
+                    <p>Expert consultation services for agricultural development and farm optimization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="images/broilers.jpg" alt="Broiler Chickens">
+                    <div class="product-info">
+                        <h3>Broiler Chickens</h3>
+                        <p>High-quality broiler chickens for meat production</p>
+                        <p><strong>Price: Contact for pricing</strong></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/fresh-eggs.jpg" alt="Fresh Eggs">
+                    <div class="product-info">
+                        <h3>Fresh Eggs</h3>
+                        <p>Farm-fresh eggs from free-range chickens</p>
+                        <p><strong>Price: Contact for pricing</strong></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/live-chickens.jpg" alt="Live Chickens">
+                    <div class="product-info">
+                        <h3>Live Chickens</h3>
+                        <p>Healthy live chickens for breeding and farming</p>
+                        <p><strong>Price: Contact for pricing</strong></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/ducks.jpg" alt="Ducks">
+                    <div class="product-info">
+                        <h3>Ducks</h3>
+                        <p>Quality ducks for meat and egg production</p>
+                        <p><strong>Price: Contact for pricing</strong></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/turkeys.jpg" alt="Turkeys">
+                    <div class="product-info">
+                        <h3>Turkeys</h3>
+                        <p>Premium turkeys for special occasions</p>
+                        <p><strong>Price: Contact for pricing</strong></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/fishs.jpg" alt="Fish">
+                    <div class="product-info">
+                        <h3>Fresh Fish</h3>
+                        <p>Farm-raised fresh fish for healthy nutrition</p>
+                        <p><strong>Price: Contact for pricing</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Ready to transform your agricultural business? Get in touch with our experts today.</p>
+            <div class="contact-info">
+                <div>
+                    <h3>Location</h3>
+                    <p>Nigeria</p>
+                </div>
+                <div>
+                    <h3>Phone</h3>
+                    <p>Contact us via WhatsApp</p>
+                </div>
+                <div>
+                    <h3>Services</h3>
+                    <p>Available nationwide</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Garkuwa Poultry Farm. All rights reserved. Professional livestock training and agricultural services.</p>
+        </div>
+    </footer>
+
+    <div class="whatsapp">
+        <a href="https://wa.me/" target="_blank">
+            <img src="images/whatsapp-icon.jpg" alt="WhatsApp Contact">
+        </a>
+    </div>
+</body>
+</html>
