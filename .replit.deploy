@@ -6,7 +6,9 @@
   "run": "NODE_ENV=production node dist/index.js",
   "env": {
     "PORT": "3000",
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "SESSION_SECRET": "garkuwa-poultry-farm-2024-secure-session-key",
+    "CORS_ORIGIN": "https://*.replit.app"
   },
   "publicDir": "dist/client"
 }
