@@ -26,7 +26,8 @@ export const securityConfig = {
   corsEnabled: true,
   corsOrigins: isDevelopment 
     ? ['http://localhost:5000'] 
-    : ['https://garkuwa-poultry-farm.repl.app', 'https://garkuwa-poultry.com'],
+    : [process.env.CORS_ORIGIN || 'https://*.replit.app'],
+  sessionSecret: process.env.SESSION_SECRET || 'dev-secret-key',
   helmetEnabled: true,
   rateLimiting: {
     enabled: isProduction,

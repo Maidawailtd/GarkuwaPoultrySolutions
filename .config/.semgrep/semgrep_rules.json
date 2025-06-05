@@ -5313,43 +5313,6 @@
       "severity": "INFO"
     },
     {
-      "id": "vendored-rules.generic.secrets.gitleaks.openai-api-key",
-      "languages": [
-        "regex"
-      ],
-      "message": "A gitleaks openai-api-key was detected which attempts to identify hard-coded credentials. It is not recommended to store credentials in source-code, as this risks secrets being leaked and used by either an internal or external malicious adversary. It is recommended to use environment variables to securely provide credentials or retrieve credentials from a secure vault or HSM (Hardware Security Module).",
-      "metadata": {
-        "category": "security",
-        "confidence": "LOW",
-        "cwe": [
-          "CWE-798: Use of Hard-coded Credentials"
-        ],
-        "cwe2021-top25": true,
-        "cwe2022-top25": true,
-        "impact": "MEDIUM",
-        "likelihood": "LOW",
-        "owasp": [
-          "A07:2021 - Identification and Authentication Failures"
-        ],
-        "references": [
-          "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
-        ],
-        "source-rule-url": "https://github.com/zricethezav/gitleaks/tree/master/cmd/generate/config/rules",
-        "subcategory": [
-          "vuln"
-        ],
-        "technology": [
-          "gitleaks"
-        ]
-      },
-      "patterns": [
-        {
-          "pattern-regex": "(?i)\\b(sk-[a-zA-Z0-9]{20}T3BlbkFJ[a-zA-Z0-9]{20})(?:['|\\\"|\\n|\\r|\\s|\\x60|;]|$)"
-        }
-      ],
-      "severity": "INFO"
-    },
-    {
       "id": "vendored-rules.generic.secrets.gitleaks.plaid-api-token",
       "languages": [
         "regex"
@@ -7491,6 +7454,43 @@
       "patterns": [
         {
           "pattern-regex": "(?i)(?:zendesk)(?:[0-9a-z\\-_\\t .]{0,20})(?:[\\s|']|[\\s|\"]){0,3}(?:=|>|:{1,3}=|\\|\\|:|<=|=>|:|\\?=)(?:'|\\\"|\\s|=|\\x60){0,5}([a-z0-9]{40})(?:['|\\\"|\\n|\\r|\\s|\\x60|;]|$)"
+        }
+      ],
+      "severity": "INFO"
+    },
+    {
+      "id": "vendored-rules.generic.secrets.gitleaks.openai-api-key",
+      "languages": [
+        "regex"
+      ],
+      "message": "A gitleaks openai-api-key was detected which attempts to identify hard-coded credentials. It is not recommended to store credentials in source-code, as this risks secrets being leaked and used by either an internal or external malicious adversary. It is recommended to use environment variables to securely provide credentials or retrieve credentials from a secure vault or HSM (Hardware Security Module).",
+      "metadata": {
+        "category": "security",
+        "confidence": "LOW",
+        "cwe": [
+          "CWE-798: Use of Hard-coded Credentials"
+        ],
+        "cwe2021-top25": true,
+        "cwe2022-top25": true,
+        "impact": "MEDIUM",
+        "likelihood": "LOW",
+        "owasp": [
+          "A07:2021 - Identification and Authentication Failures"
+        ],
+        "references": [
+          "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+        ],
+        "source-rule-url": "https://github.com/zricethezav/gitleaks/tree/master/cmd/generate/config/rules",
+        "subcategory": [
+          "vuln"
+        ],
+        "technology": [
+          "gitleaks"
+        ]
+      },
+      "patterns": [
+        {
+          "pattern-regex": "(?i)\\b(sk-[a-zA-Z0-9_-]+)(?:['|\\\"|\\n|\\r|\\s|\\x60|;]|$)"
         }
       ],
       "severity": "INFO"
@@ -51227,9 +51227,15 @@
         "js",
         "ts"
       ],
-      "message": "Use of sql.raw() is not allowed as it may lead to SQL injection. Use parameterized queries with Drizzle's query builders instead.",
+      "message": "Use of sql.raw() with SQL string concatenation is not allowed as it may lead to SQL injection. Use parameterized queries with Drizzle's query builders instead.",
       "metadata": {
         "category": "security",
+        "confidence": "LOW",
+        "cwe": [
+          "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+        ],
+        "impact": "HIGH",
+        "likelihood": "LOW",
         "references": [
           "https://orm.drizzle.team/docs/sql#sqlraw"
         ],
@@ -51256,7 +51262,20 @@
               ]
             },
             {
-              "pattern": "sql.raw(...)"
+              "pattern-either": [
+                {
+                  "pattern": "sql.raw(`...${...}...`)\n"
+                },
+                {
+                  "pattern": "$QUERY = `...${...}...`\n...\nsql.raw($QUERY)\n"
+                },
+                {
+                  "pattern": "$QUERY = $SQL + $VALUE\n...\nsql.raw($QUERY)\n"
+                },
+                {
+                  "pattern": "sql.raw($SQL + $VALUE)\n"
+                }
+              ]
             }
           ]
         },
@@ -51273,7 +51292,20 @@
               ]
             },
             {
-              "pattern": "$ALIAS.raw(...)"
+              "pattern-either": [
+                {
+                  "pattern": "$ALIAS.raw(`...${...}...`)\n"
+                },
+                {
+                  "pattern": "$QUERY = `...${...}...`\n...\n$ALIAS.raw($QUERY)\n"
+                },
+                {
+                  "pattern": "$QUERY = $SQL + $VALUE\n...\n$ALIAS.raw($QUERY)\n"
+                },
+                {
+                  "pattern": "$ALIAS.raw($SQL + $VALUE)\n"
+                }
+              ]
             }
           ]
         },
@@ -51290,7 +51322,20 @@
               ]
             },
             {
-              "pattern": "$DRIZZLE.sql.raw(...)"
+              "pattern-either": [
+                {
+                  "pattern": "$DRIZZLE.sql.raw(`...${...}...`)\n"
+                },
+                {
+                  "pattern": "$QUERY = `...${...}...`\n...\n$DRIZZLE.sql.raw($QUERY)\n"
+                },
+                {
+                  "pattern": "$QUERY = $SQL + $VALUE\n...\n$DRIZZLE.sql.raw($QUERY)\n"
+                },
+                {
+                  "pattern": "$DRIZZLE.sql.raw($SQL + $VALUE)\n"
+                }
+              ]
             }
           ]
         },

@@ -1,19 +1,25 @@
+cat > vercel.json << 'EOF'
 {
   "version": 2,
   "builds": [
     {
-      "src": "dist/index.js",
+      "src": "server/index.ts",
       "use": "@vercel/node",
-      "config": { "includeFiles": ["dist/**"] }
+      "config": { "includeFiles": ["dist/**", "shared/**"] }
+    },
+    {
+      "src": "client/vite.config.ts",
+      "use": "@vercel/vite",
+      "config": { "outputDirectory": "dist/public" }
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/index.js"
-    }
+    { "src": "/api/(.*)", "dest": "server/index.js" },
+    { "src": "/assets/(.*)", "dest": "dist/public/assets/$1" },
+    { "src": "/(.*)", "dest": "dist/public/index.html" }
   ],
   "env": {
     "NODE_ENV": "production"
   }
 }
+EOF
