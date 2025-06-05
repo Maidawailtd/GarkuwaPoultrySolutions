@@ -51364,6 +51364,79 @@
         }
       ],
       "severity": "ERROR"
+    },
+    {
+      "id": "replit-rules.python.django.security.audit.django-replit-cors-csrf-hosts",
+      "languages": [
+        "python"
+      ],
+      "message": "An old Replit Django template used overly permissive settings for ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS in `settings.py`.\nThis deviates from Django's recommended best practices, which restricts these values to the app's own domain.\n\nThis configuration allows apps under *.replit.dev or *.replit.app to potentially exploit CORS and CSRF vulnerabilities\nagainst Django apps running on these domains, exposing them to a wide range of attacks.\n\nReplit recommends setting these values to\n```\nALLOWED_HOSTS = os.environ[\"REPLIT_DOMAINS\"].split(',')\nCSRF_TRUSTED_ORIGINS = [\n    \"https://\" + domain for domain in os.environ[\"REPLIT_DOMAINS\"].split(',')\n]\n```\n",
+      "metadata": {
+        "category": "security",
+        "confidence": "HIGH",
+        "cve": "CVE-2016-9014",
+        "impact": "HIGH",
+        "likelihood": "MEDIUM",
+        "references": [
+          "https://docs.djangoproject.com/en/1.10/ref/settings/#allowed-hosts",
+          "https://nvd.nist.gov/vuln/detail/CVE-2016-9014"
+        ],
+        "subcategory": [
+          "audit"
+        ],
+        "technology": [
+          "django"
+        ]
+      },
+      "paths": {
+        "include": [
+          "settings.py",
+          "*/settings.py",
+          "*/settings/*.py",
+          "django/settings.py"
+        ]
+      },
+      "patterns": [
+        {
+          "pattern-either": [
+            {
+              "patterns": [
+                {
+                  "pattern-inside": "ALLOWED_HOSTS = [...]\n"
+                },
+                {
+                  "pattern-either": [
+                    {
+                      "pattern": "\".replit.dev\"\n"
+                    },
+                    {
+                      "pattern": "\".replit.app\"\n"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "patterns": [
+                {
+                  "pattern-inside": "CSRF_TRUSTED_ORIGINS = [...]\n"
+                },
+                {
+                  "pattern-either": [
+                    {
+                      "pattern": "\"https://*.replit.dev\"\n"
+                    },
+                    {
+                      "pattern": "\"https://*.replit.app\"\n"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": "ERROR"
     }
   ]
 }
