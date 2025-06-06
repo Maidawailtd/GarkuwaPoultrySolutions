@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { useAuthStore } from '@/lib/store';
+import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,17 +16,23 @@ import {
 import { Lock, Mail } from 'lucide-react';
 
 export default function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login, isLoading, error, clearError } = useAuthStore();
+  const [isLoading, setIsLoading] = useState(false);
+  const { signIn, user } = useAuth();
   const [, navigate] = useLocation();
   const { toast } = useToast();
 
+  // Redirect if already authenticated
+  if (user) {
+    navigate('/dashboard');
+    return null;
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    clearError();
     
-    if (!username || !password) {
+    if (!email || !password) {
       toast({
         title: 'Error',
         description: 'Please fill in all fields',
@@ -35,11 +41,26 @@ export default function Login() {
       return;
     }
     
+    setIsLoading(true);
     try {
-      await login(username, password);
-      // Successful login redirects in the auth store
+      const { error } = await signIn(email, password);
+      if (error) {
+        throw new Error(error.message);
+      }
+      
+      toast({
+        title: 'Login successful',
+        description: 'Welcome back!',
+      });
+      navigate('/dashboard');
     } catch (error) {
-      // Error handling is done in the auth store
+      toast({
+        title: 'Login failed',
+        description: error instanceof Error ? error.message : 'Please check your credentials',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -49,26 +70,22 @@ export default function Login() {
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold text-center">Log in</CardTitle>
           <CardDescription className="text-center">
-            Enter your username and password to access your account
+            Enter your email and password to access your account
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
-            {error && (
-              <div className="p-3 text-sm rounded-md bg-red-50 text-red-500 dark:bg-red-900/20 dark:text-red-400">
-                {error}
-              </div>
-            )}
             <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
+              <Label htmlFor="email">Email</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Input
-                  id="username"
-                  placeholder="Username"
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
                   className="pl-9"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>

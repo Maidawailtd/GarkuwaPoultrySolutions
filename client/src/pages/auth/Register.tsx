@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'wouter';
-import { useAuthStore } from '@/lib/store';
+import { Link, useLocation } from 'wouter';
+import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -25,15 +25,23 @@ import { UserRole } from '@shared/schema';
 
 export default function Register() {
   const [formData, setFormData] = useState({
-    username: '',
     email: '',
     password: '',
     confirmPassword: '',
-    fullName: '',
-    role: "CLIENT" as keyof typeof UserRole,
+    firstName: '',
+    lastName: '',
+    role: "client",
   });
-  const { register, isLoading, error, clearError } = useAuthStore();
+  const [isLoading, setIsLoading] = useState(false);
+  const { signUp, user } = useAuth();
+  const [, navigate] = useLocation();
   const { toast } = useToast();
+
+  // Redirect if already authenticated
+  if (user) {
+    navigate('/dashboard');
+    return null;
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
