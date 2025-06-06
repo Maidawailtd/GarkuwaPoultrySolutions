@@ -13,15 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Mail, Lock, User, Briefcase } from 'lucide-react';
-import { UserRole } from '@shared/schema';
+import { Mail, Lock, User } from 'lucide-react';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -30,7 +22,6 @@ export default function Register() {
     confirmPassword: '',
     firstName: '',
     lastName: '',
-    role: "client",
   });
   const [isLoading, setIsLoading] = useState(false);
   const { signUp, user } = useAuth();
@@ -48,22 +39,11 @@ export default function Register() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleRoleChange = (value: string) => {
-    setFormData({ ...formData, role: value as keyof typeof UserRole });
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    clearError();
     
-    // Basic validation
-    if (
-      !formData.username ||
-      !formData.email ||
-      !formData.password ||
-      !formData.confirmPassword ||
-      !formData.fullName
-    ) {
+    // Validation
+    if (!formData.email || !formData.password || !formData.confirmPassword || !formData.firstName || !formData.lastName) {
       toast({
         title: 'Error',
         description: 'Please fill in all fields',
@@ -71,7 +51,7 @@ export default function Register() {
       });
       return;
     }
-    
+
     if (formData.password !== formData.confirmPassword) {
       toast({
         title: 'Error',
@@ -80,83 +60,80 @@ export default function Register() {
       });
       return;
     }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
+
+    if (formData.password.length < 6) {
       toast({
         title: 'Error',
-        description: 'Please enter a valid email address',
+        description: 'Password must be at least 6 characters long',
         variant: 'destructive',
       });
       return;
     }
-    
-    // Password complexity validation
-    if (formData.password.length < 8) {
-      toast({
-        title: 'Error',
-        description: 'Password must be at least 8 characters long',
-        variant: 'destructive',
-      });
-      return;
-    }
-    
+
+    setIsLoading(true);
     try {
-      const { confirmPassword, ...userData } = formData;
-      await register(userData);
-      // Successful registration redirects in the auth store
+      const { error } = await signUp(formData.email, formData.password, formData.firstName, formData.lastName);
+      if (error) {
+        throw new Error(error.message);
+      }
+      
+      toast({
+        title: 'Registration successful',
+        description: 'Please check your email to verify your account',
+      });
+      navigate('/login');
     } catch (error) {
-      // Error handling is done in the auth store
+      toast({
+        title: 'Registration failed',
+        description: error instanceof Error ? error.message : 'Please try again',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="container max-w-lg py-10">
+    <div className="container max-w-md py-10">
       <Card>
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Create an account</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">Create account</CardTitle>
           <CardDescription className="text-center">
-            Enter your information to create an account
+            Enter your information to create your account
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
-            {error && (
-              <div className="p-3 text-sm rounded-md bg-red-50 text-red-500 dark:bg-red-900/20 dark:text-red-400">
-                {error}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="firstName">First Name</Label>
+                <div className="relative">
+                  <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    id="firstName"
+                    name="firstName"
+                    placeholder="First name"
+                    className="pl-9"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
               </div>
-            )}
-            
-            <div className="space-y-2">
-              <Label htmlFor="fullName">Full Name</Label>
-              <div className="relative">
-                <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input
-                  id="fullName"
-                  name="fullName"
-                  placeholder="John Doe"
-                  className="pl-9"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
-              <div className="relative">
-                <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input
-                  id="username"
-                  name="username"
-                  placeholder="johndoe"
-                  className="pl-9"
-                  value={formData.username}
-                  onChange={handleChange}
-                  required
-                />
+              <div className="space-y-2">
+                <Label htmlFor="lastName">Last Name</Label>
+                <div className="relative">
+                  <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    id="lastName"
+                    name="lastName"
+                    placeholder="Last name"
+                    className="pl-9"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
               </div>
             </div>
             
@@ -168,39 +145,13 @@ export default function Register() {
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="Enter your email"
                   className="pl-9"
                   value={formData.email}
                   onChange={handleChange}
                   required
                 />
               </div>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="role">I want to:</Label>
-              <Select
-                value={formData.role}
-                onValueChange={handleRoleChange}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select your role" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value={UserRole.CLIENT}>
-                    <div className="flex items-center">
-                      <Briefcase className="mr-2 h-4 w-4" />
-                      <span>Hire for a project (Client)</span>
-                    </div>
-                  </SelectItem>
-                  <SelectItem value={UserRole.FREELANCER}>
-                    <div className="flex items-center">
-                      <User className="mr-2 h-4 w-4" />
-                      <span>Work as a freelancer</span>
-                    </div>
-                  </SelectItem>
-                </SelectContent>
-              </Select>
             </div>
             
             <div className="space-y-2">
@@ -211,16 +162,13 @@ export default function Register() {
                   id="password"
                   name="password"
                   type="password"
-                  placeholder="••••••••"
+                  placeholder="Create password"
                   className="pl-9"
                   value={formData.password}
                   onChange={handleChange}
                   required
                 />
               </div>
-              <p className="text-xs text-muted-foreground">
-                Password must be at least 8 characters long
-              </p>
             </div>
             
             <div className="space-y-2">
@@ -231,7 +179,7 @@ export default function Register() {
                   id="confirmPassword"
                   name="confirmPassword"
                   type="password"
-                  placeholder="••••••••"
+                  placeholder="Confirm password"
                   className="pl-9"
                   value={formData.confirmPassword}
                   onChange={handleChange}

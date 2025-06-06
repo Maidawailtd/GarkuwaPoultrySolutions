@@ -24,7 +24,7 @@ export function MainNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [location, navigate] = useLocation();
-  const { isAuthenticated, user, isLoading } = useAuth();
+  const { isAuthenticated, user, isLoading, signOut } = useAuth();
 
   // Handle scroll effect for the navbar
   useEffect(() => {
@@ -53,10 +53,6 @@ export function MainNavbar() {
     }
   }, []);
 
-  const handleLogout = () => {
-    window.location.href = '/api/logout';
-  };
-
   const getInitials = (name?: string) => {
     if (!name) return 'U';
     return name
@@ -64,6 +60,15 @@ export function MainNavbar() {
       .map(part => part[0])
       .join('')
       .toUpperCase();
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      navigate('/');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   };
 
   return (
